@@ -4,11 +4,20 @@
     <welcome-file>/manager/index.jsp</welcome-file>
   </welcome-file-list>
   
-   <listener>
+  <listener>
     <listener-class>com.longlongyu.add.BlogListener</listener-class>
   </listener>
   
   <session-config>
     <session-timeout>10</session-timeout><!--session10分钟后超时销毁-->
   </session-config>
+  
+  <servlet>
+  	<servlet-name>index</servlet-name>
+  	<jsp-file>/manager/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>index</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
 </web-app>

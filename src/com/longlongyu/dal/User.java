@@ -14,8 +14,6 @@ public class User {
 	/**
 	 * 获取用户列表
 	 * 
-	 * @return
-	 * @throws SQLException
 	 */
 	public List<Userinfo> getList() throws SQLException {
 		List<Userinfo> list = new ArrayList<Userinfo>();

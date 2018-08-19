@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <%
- session.setAttribute("title","首页 - ");
+ session.setAttribute("title","博客龙 - 想成为你钟爱的博客社区！");
 %>
 <%@ include file="b_head.jsp"%>
 <body>
@@ -11,8 +11,7 @@
     String username = (String) session.getAttribute("username");
   	if (username != null) {
   %>
-    <p><%=username %>,欢迎您来到博客龙！</p>
-    <p>当前在线人数为 ${num} 人！</p>
+    <%@ include file="c_nav.jsp"%>
   <% } else { %>
   
     <%@ include file="c_login.jsp"%>

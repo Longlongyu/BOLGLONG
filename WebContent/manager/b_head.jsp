@@ -2,7 +2,7 @@
     pageEncoding="utf-8"%>
 <head>
 <meta charset="utf-8">
-<title><%=session.getAttribute("title") %>博客龙</title>
+<title><%=session.getAttribute("title") %></title>
 <meta name="author" content="Longlongyu">
 <meta name="description" content="一个小型博客demo。">
 <script src="/BlogTest/source/javascript/Ajax.js?v0.0.4"></script>
