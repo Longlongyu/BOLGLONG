@@ -37,7 +37,6 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getDate("createdate"));
 			list.add(info);
-			System.out.print(list);
 		}
 		conn.close();
 		return list;
@@ -46,13 +45,13 @@ public class Post {
 	/**
 	 * 获得某标签下的所有博文列表
 	 * 
-	 * @param classId
+	 * @param tag
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<PostInfo> getListByClassId(String tag) throws SQLException {
+	public List<PostInfo> getListByTag(String tag) throws SQLException {
 		List<PostInfo> list = new ArrayList<PostInfo>();
-		String sql = "select * from post,tag " + " where post.p_id=tag.p_id and tag=" + tag + " order by p_id desc";
+		String sql = "select tag from post,tag where post.p_id=tag.p_id order by p_id desc";
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
 			PostInfo info = new PostInfo();
@@ -68,13 +67,33 @@ public class Post {
 	}
 
 	/**
+	 * 获得单个博文的所有标签
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<PostInfo> getTagsByPost(int id) throws SQLException {
+		List<PostInfo> list = new ArrayList<PostInfo>();
+		String sql = "select tag from tag " + " where p_id='" + id + "'";
+		ResultSet rs = conn.executeQuery(sql);
+		PostInfo info = getPostInfo(id);
+		while (rs.next()) {
+			info.pushTagsList(rs.getString("tag"));
+		}
+		list.add(info);
+		conn.close();
+		return list;
+	}
+
+	/**
 	 * 获取单条博文
 	 * 
 	 * @param id
 	 * @return
 	 * @throws SQLException
 	 */
-	public PostInfo getBlogInfo(int id) throws SQLException {
+	public PostInfo getPostInfo(int id) throws SQLException {
 		PostInfo info = new PostInfo();
 		String sql = "select * from post where p_id=" + id;
 		ResultSet rs = conn.executeQuery(sql);
@@ -88,7 +107,25 @@ public class Post {
 		conn.close();
 		return info;
 	}
-
+	
+	/**
+	 * 是否有某条博文
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean hasPostInfo(int id) throws SQLException {
+		boolean result = false;
+		String sql = "select * from post where p_id=" + id;
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			result = true;
+		}
+		conn.close();
+		return result;
+	}
+	
 	/**
 	 * 博文插入操作
 	 * 
@@ -96,8 +133,8 @@ public class Post {
 	 * @return
 	 */
 	public int insert(PostInfo info) {
-		String sql = "insert into post(u_id,title,createdate,content)values";
-		sql = sql + "('" + info.getAuthorId() + "','" + info.getTitle() + "',now()," + info.getContent() + ")";
+		String sql = "insert into post(u_id,title,createdate,content) values";
+		sql = sql + "(" + info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent() + "')";
 		int result = 0;
 		System.out.println(sql);
 		result = conn.executeUpdate(sql);
@@ -112,8 +149,8 @@ public class Post {
 	 * @return
 	 */
 	public int update(PostInfo info) {
-		String sql = "update post set " + " title='" + info.getTitle() + "',content='" + info.getContent() + "'," + "u_id='"
-		    + info.getAuthorId() + "'where p_id=" + info.getId() + "";
+		String sql = "update post set " + " title='" + info.getTitle() + "',content='"
+					+ info.getContent() + "' " + " where p_id=" + info.getId() + "";
 		int result = 0;
 		System.out.println(sql);
 		result = conn.executeUpdate(sql);

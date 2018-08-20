@@ -56,10 +56,12 @@ var $_ajax = (function() {
   		alert("您的浏览器不支持AJAX！");
   		return 0;
   	}
-  	var e = document.getElementById(from_id);
+
+		//筛选插入数据
+		var e = document.getElementById(from_id);
   	var inputs = e.elements;
   	var url = e.action;
-  	var postData = "";
+		var postData = "";
   	for(var i=0; i<inputs.length; i++) {
   		switch(inputs[i].type) {
   			case "text":
@@ -67,12 +69,30 @@ var $_ajax = (function() {
   			break;
   			case "password":
   				postData += inputs[i].name + "=" + inputs[i].value + "&";
-  			break;
+				break;
+				case "radio":
+				if(inputs[i].checked) {
+					postData += inputs[i].name + "=" + inputs[i].value + "&";
+				}
+				break;
+				case "checkbox":
+					if(inputs[i].checked) {
+						postData += inputs[i].name + "=" + inputs[i].value + "&";
+					}
+				break;
+				case "textarea":
+					postData += inputs[i].name + "=" + inputs[i].value + "&";
+				break;
+				case "hidden":
+					postData += inputs[i].name + "=" + inputs[i].value + "&";
+				break;
   			default:
   				continue;
   		}
   	}
-  	postData += "t=" + Math.random();
+		postData += "t=" + Math.random();
+
+		//发送请求
   	xmlHttp.open("POST", url, true);
   	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
   	xmlHttp.onreadystatechange =  function() {
@@ -93,6 +113,7 @@ var $_ajax = (function() {
   	});
 	}
   return {
-		submitForm : submitForm
+		submitForm : submitForm,
+		submit : submit
   }
 })();

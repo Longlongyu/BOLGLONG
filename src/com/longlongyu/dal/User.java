@@ -73,6 +73,28 @@ public class User {
 		conn.close();
 		return info;
 	}
+	
+	/**
+	 * 获取单个用户信息
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public Userinfo getUserinfo(int id) throws SQLException {
+		Userinfo info = new Userinfo();
+		String sql = "select * from user where u_id='" + id + "'";
+		ResultSet rs = conn.executeQuery(sql);
+		if (rs.next()) {
+			info.setUserid(rs.getInt("u_id"));
+			info.setUsername(rs.getString("u_name"));
+			info.setPassword(rs.getString("password"));
+			info.setEmail(rs.getString("email"));
+			info.setPower(rs.getInt("power"));
+		}
+		conn.close();
+		return info;
+	}
 
 	/**
 	 * 判断注册用户是否已经存在
