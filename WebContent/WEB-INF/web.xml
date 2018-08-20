@@ -17,4 +17,12 @@
     <servlet-name>managerjsp</servlet-name>
     <url-pattern>/post-edit</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>postjsp</servlet-name>
+    <jsp-file>/manager/post.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>postjsp</servlet-name>
+    <url-pattern>/post/*</url-pattern>
+  </servlet-mapping>
 </web-app>

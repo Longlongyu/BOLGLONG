@@ -16,7 +16,7 @@
 %>
 <article class="post">
   <h1 class="title">
-    <a href="?id=<%=info.getId()%>"><%=info.getTitle()%></a>
+    <a href="post/<%=user.getUserinfo(info.getAuthorId()).getUsername()%>?title=<%=info.getTitle()%>"><%=info.getTitle()%></a>
   </h1>
   <p class="date"><%=info.getCreatedate()%></p>
   <p class="author">作者: <%=user.getUserinfo(info.getAuthorId()).getUsername()%></p>

@@ -12,7 +12,7 @@
   	if (username != null) {
   %>
     <%@ include file="c_nav.jsp"%>
-    <%@ include file="c_post.jsp"%>
+    <%@ include file="c_posts.jsp"%>
   <% } else { %>
   
     <%@ include file="c_login.jsp"%>

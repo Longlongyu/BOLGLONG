@@ -27,7 +27,7 @@ public class BlogListener implements HttpSessionListener {
 		// 获取得到Context对象，使用Context域对象保存用户在线的个数
 		ServletContext context = arg0.getSession().getServletContext();
 
-		Integer num = (Integer) arg0.getSession().getAttribute("num");
+		Integer num = (Integer) context.getAttribute("num");
 		if (num == null) {
 			context.setAttribute("num", 1);
 		} else {

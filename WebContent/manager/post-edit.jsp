@@ -19,12 +19,11 @@
       title = info.getTitle();
     }
   }
-  
 %>
 <!DOCTYPE html>
 <html>
 <%
-  session.setAttribute("title",title + " - 博客龙");
+  session.setAttribute("title", title + " | 文章编辑 - 博客龙");
 %>
 <%@ include file="b_head.jsp"%>
 <body>

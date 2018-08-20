@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
       	user.updateTime(name);// 更新登陆时间
       	request.getSession().setAttribute("username", name);// Session记录对应用户
         out.print("<script>location.reload();</script>");
-	    }else {
+	    } else {
 	      out.print("你输入的用户名或者密码错误！请重新输入！");
 	    }
 		} catch (SQLException e) {
