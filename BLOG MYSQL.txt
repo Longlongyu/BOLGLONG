@@ -1,0 +1,49 @@
+/* 用户表(User) */
+CREATE TABLE user(
+u_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+u_name CHAR(20) NOT NULL UNIQUE,
+password CHAR(50) NOT NULL,
+avatar VARCHAR(300),
+power INT(1) DEFAULT 1,
+email CHAR(30) NOT NULL,
+u_time DATETIME
+)default charset=utf8;
+
+/* 文章表(Post) */
+CREATE TABLE post(
+p_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+u_id INT(10) NOT NULL,
+title CHAR(50) NOT NULL,
+createdate DATE NOT NULL,
+content TEXT NOT NULL
+)default charset=utf8;
+
+/* 标记表(Tag) */
+CREATE TABLE tag(
+p_id INT(10) NOT NULL,
+tag CHAR(20) NOT NULL
+)default charset=utf8;
+
+/* 评论表(Comment) */
+CREATE TABLE comment(
+c_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+u_id INT(10) NOT NULL,
+p_id INT(10) NOT NULL,
+comment TEXT NOT NULL,
+c_date DATETIME NOT NULL
+)default charset=utf8;
+
+ALTER TABLE post ADD CONSTRAINT fk_post_user_id FOREIGN KEY(u_id)
+REFERENCES user(u_id) ON DELETE CASCADE;
+ALTER TABLE tag ADD CONSTRAINT fk_tag_post_id FOREIGN KEY(p_id)
+REFERENCES post(p_id) ON DELETE CASCADE;
+ALTER TABLE comment ADD CONSTRAINT fk_comment_user_id FOREIGN KEY(u_id)
+REFERENCES user(u_id) ON DELETE CASCADE;
+ALTER TABLE comment ADD CONSTRAINT fk_comment_post_id FOREIGN KEY(p_id)
+REFERENCES post(p_id) ON DELETE CASCADE;
+
+INSERT INTO user (u_name, password, power) VALUES ('admin', 'admin', 0);
+
+
+
+
