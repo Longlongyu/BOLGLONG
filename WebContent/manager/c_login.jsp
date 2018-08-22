@@ -13,7 +13,7 @@
 </fieldset>
 
   
-<script>
+<script type="text/javascript">
   document.getElementById("loginSubmitButton").addEventListener('click', function (){
   	$_ajax.submitForm("login", "myDiv");
   });

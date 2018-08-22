@@ -14,7 +14,7 @@
   String title = "未命名文章";
   if (request.getParameter("id") != null) {
   	PostInfo info2 = post.getPostInfo(Integer.parseInt(request.getParameter("id")));
-    if (user.getUserinfo(username).getUserid() == info2.getAuthorId()) {
+    if (user.getUserId(username) == info2.getAuthorId()) {
       info = info2;
       title = info.getTitle();
     }
@@ -22,11 +22,12 @@
 %>
 <!DOCTYPE html>
 <html>
-<%
-  session.setAttribute("title", title + " | 文章编辑 - 博客龙");
-%>
-<%@ include file="b_head.jsp"%>
+<head>
+  <title><%=title %>> | 文章编辑 - 博客龙</title>
+  <%@ include file="b_head.jsp"%>
+</head>
 <body>
+<%@ include file="c_nav.jsp"%>
 <p>Blog post edit:</p>
 <form id="post-edit" name="post-edit" method="post" action="/BlogTest/EditServlet" onsubmit="return false;">
   <table>
@@ -59,8 +60,8 @@
 <br>
 <a href="/BlogTest">back</a>
 
-
-<script>
+<%@ include file="script.jsp"%>
+<script type="text/javascript">
   document.getElementById("submitPostEditButton").addEventListener('click', function (){
     $_ajax.submitForm("post-edit", "postEditOutPut");
   });

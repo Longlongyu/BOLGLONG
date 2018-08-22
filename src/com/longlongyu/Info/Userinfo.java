@@ -1,11 +1,11 @@
 package com.longlongyu.Info;
 
 public class Userinfo {
-	private int userid;
-	private String username = "";
-	private String password = "";
-	private String email = "";
-	private int power;
+	private int userid;             // 用户的编号
+	private String username = "";   // 用户的名字
+	private String password = "";   // 用户的密码
+	private String email = "";      // 用户的邮箱
+	private int power;              // 用户的权限
 
 	public int getUserid() {
 		return userid;

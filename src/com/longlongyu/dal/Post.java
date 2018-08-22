@@ -24,9 +24,9 @@ public class Post {
 
 		String sql = "select * from post";
 		if (DataValidator.isNullOrEmpty(keyword)) {
-			sql = sql + " order by p_id desc";
+			sql = sql + " order by createdate desc";
 		} else {
-			sql = sql + " where title like '%" + keyword + "%' order by p_id desc";
+			sql = sql + " where title like '%" + keyword + "%' order by createdate desc";
 		}
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
@@ -41,7 +41,28 @@ public class Post {
 		conn.close();
 		return list;
 	}
+	
+	/**
+	 * 获取可用的博文id
+	 * 
+	 * @return p_id
+	 * @throws SQLException
+	 */
+	public int getNullPostId() throws SQLException {
+		int result = 1;
 
+		String sql = "select * from post";
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			if (result != rs.getInt("p_id")) {
+				break;
+			}
+			result++;
+		}
+		conn.close();
+		return result;
+	}
+	
 	/**
 	 * 获得某标签下的所有博文列表
 	 * 
@@ -51,7 +72,31 @@ public class Post {
 	 */
 	public List<PostInfo> getListByTag(String tag) throws SQLException {
 		List<PostInfo> list = new ArrayList<PostInfo>();
-		String sql = "select tag from post,tag where post.p_id=tag.p_id order by p_id desc";
+		String sql = "select post.p_id,u_id,title,content,createdate from post,tag where post.p_id=tag.p_id order by createdate desc";
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			PostInfo info = new PostInfo();
+			info.setId(rs.getInt("p_id"));
+			info.setAuthorId(rs.getInt("u_id"));
+			info.setTitle(rs.getString("title"));
+			info.setContent(rs.getString("content"));
+			info.setCreatedate(rs.getDate("createdate"));
+			list.add(info);
+		}
+		conn.close();
+		return list;
+	}
+	
+	/**
+	 * 获得某作者的所有博文列表
+	 * 
+	 * @param tag
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<PostInfo> getListByAuthor(int id) throws SQLException {
+		List<PostInfo> list = new ArrayList<PostInfo>();
+		String sql = "select * from post where u_id=" + id + " order by createdate desc";
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
 			PostInfo info = new PostInfo();
@@ -135,6 +180,22 @@ public class Post {
 	public int insert(PostInfo info) {
 		String sql = "insert into post(u_id,title,createdate,content) values";
 		sql = sql + "(" + info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent() + "')";
+		int result = 0;
+		System.out.println(sql);
+		result = conn.executeUpdate(sql);
+		conn.close();
+		return result;
+	}
+	
+	/**
+	 * 博文插入操作
+	 * 
+	 * @param info
+	 * @return
+	 */
+	public int insert(int id,PostInfo info) {
+		String sql = "insert into post(p_id,u_id,title,createdate,content) values";
+		sql = sql + "(" + id + ","+ info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent() + "')";
 		int result = 0;
 		System.out.println(sql);
 		result = conn.executeUpdate(sql);

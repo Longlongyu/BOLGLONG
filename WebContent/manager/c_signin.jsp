@@ -19,7 +19,7 @@
 </fieldset>
 
   
-<script>
+<script type="text/javascript">
   document.getElementById("signinSubmitButton").addEventListener('click', function (){
     $_ajax.submitForm("signin", "myDiv2");
   });

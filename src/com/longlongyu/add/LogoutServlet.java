@@ -31,9 +31,10 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		session.setAttribute("username", null);
-		response.sendRedirect("/BlogTest");
+		HttpSession session = request.getSession(false);    // 获取用户session
+		session.setAttribute("username", null);        // 获取用户名为null
+		response.sendRedirect("/BlogTest");						 // 重定向到首页
+		session.invalidate();
 	}
 
 	/**

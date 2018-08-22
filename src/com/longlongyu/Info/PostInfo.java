@@ -5,12 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 public class PostInfo {
-	private int id;
-	private int u_id;
-	private String title = "";
-	private String content = "";
-	private Date createdate;
-	private List<String> tags = new ArrayList<>();
+	private int id;   // 文章的编号
+	private int u_id; // 用户的编号
+	private String title = "";   // 文章的标题
+	private String content = ""; // 文章的内容
+	private Date createdate;     // 文章的创建日期
+	private List<String> tags = new ArrayList<>();  // 文章的tag数组
 
 	public int getId() {
 		return id;

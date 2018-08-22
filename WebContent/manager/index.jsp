@@ -2,22 +2,13 @@
   pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-<%
- session.setAttribute("title","博客龙 - 想成为你钟爱的博客社区！");
-%>
-<%@ include file="b_head.jsp"%>
+<head>
+  <title>博客龙 - 想成为你钟爱的博客社区！</title>
+  <jsp:include page="b_head.jsp" flush="true" />
+</head>
 <body>
-  <%
-    String username = (String) session.getAttribute("username");
-  	if (username != null) {
-  %>
-    <%@ include file="c_nav.jsp"%>
-    <%@ include file="c_posts.jsp"%>
-  <% } else { %>
-  
-    <%@ include file="c_login.jsp"%>
-    <%@ include file="c_signin.jsp"%>
-  
-  <% } %>
+  <jsp:include page="c_nav.jsp" flush="true" />
+  <jsp:include page="c_posts.jsp" flush="true" />
+  <%@ include file="script.jsp"%>
 </body>
 </html>

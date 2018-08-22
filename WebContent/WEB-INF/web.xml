@@ -10,6 +10,14 @@
     <session-timeout>10</session-timeout>
   </session-config>
   <servlet>
+    <servlet-name>signinjsp</servlet-name>
+    <jsp-file>/manager/signin.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signinjsp</servlet-name>
+    <url-pattern>/signin</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>managerjsp</servlet-name>
     <jsp-file>/manager/post-edit.jsp</jsp-file>
   </servlet>
@@ -24,5 +32,13 @@
   <servlet-mapping>
     <servlet-name>postjsp</servlet-name>
     <url-pattern>/post/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>userpagejsp</servlet-name>
+    <jsp-file>/manager/user-page.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userpagejsp</servlet-name>
+    <url-pattern>/user-page</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -95,6 +95,42 @@ public class User {
 		conn.close();
 		return info;
 	}
+	
+	/**
+	 * 获取用户名
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getUserName(int id) throws SQLException {
+		String result = null;
+		String sql = "select u_name from user where u_id='" + id + "'";
+		ResultSet rs = conn.executeQuery(sql);
+		if (rs.next()) {
+			result = rs.getString("u_name");
+		}
+		conn.close();
+		return result;
+	}
+	
+	/**
+	 * 获取用户id
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getUserId(String username) throws SQLException {
+		int result = -1;
+		String sql = "select u_id from user where u_name='" + username + "'";
+		ResultSet rs = conn.executeQuery(sql);
+		if (rs.next()) {
+			result = rs.getInt("u_id");
+		}
+		conn.close();
+		return result;
+	}
 
 	/**
 	 * 判断注册用户是否已经存在

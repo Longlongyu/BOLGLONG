@@ -22,10 +22,10 @@ import com.longlongyu.dal.User;
 public class EditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	/**
-   * 正则表达式：验证标题
-   */
+	// 正则表达式：验证标题
   final String REGEX_TITLE = "^.{1,50}$";
+	// 正则表达式：验证内容
+	 final String REGEX_CONENT = "^.{10,}";
   
   Post post = new Post();
   User user = new User();
@@ -53,30 +53,33 @@ public class EditServlet extends HttpServlet {
     request.setCharacterEncoding("utf8");
     PrintWriter out = response.getWriter();
     
-    String username = request.getParameter("username");  // 获取博文操作用户
-    int id = Integer.parseInt(request.getParameter("id")); // 获取博文id
-    String title = request.getParameter("title"); // 获取标题
-		String content = request.getParameter("content"); // 获取文章
-		
+    String username = request.getParameter("username");    // 获取文章操作用户
+    int id = Integer.parseInt(request.getParameter("id")); // 获取文章id
+    String title = request.getParameter("title"); 				 // 获取标题
+		String content = request.getParameter("content"); 		 // 获取文章内容
 		try {
-			if (!user.isExistUsersInfo(username)) {
+			if (!user.isExistUsersInfo(username)
+					 || !username.equals((String) request.getSession().getAttribute("username"))) { // 判断用户是否存在
 				out.print("用户名未识别！请登陆或注册后再试！");
-			} else if (Pattern.matches(REGEX_TITLE, title)) {
+			} else if (Pattern.matches(REGEX_TITLE, title)
+					 && Pattern.matches(REGEX_CONENT, content)) {    // 判断标题和内容是否符合要求
 				PostInfo info = new PostInfo();
 				info.setTitle(title);
 				info.setContent(content);
-				if (id == 0) {
-					System.out.println(username);
-					int u_id = user.getUserinfo(username).getUserid();
+				if (post.getPostInfo(id).getAuthorId() != user.getUserId(username)) {   // 判断用户和作者是否为同一人
+					int u_id = user.getUserId(username);
+					int p_id = post.getNullPostId();
 					info.setAuthorId(u_id);
-					post.insert(info);
+					post.insert(p_id, info);
+					out.print("<script>location.href += '?id=" + p_id + "';</script>");
 				} else {
 					info.setId(id);
 					post.update(info);
 				}
+				request.getSession().setAttribute("postlist", null);
 				out.print("保存成功！");
 		  } else {
-		    out.print("标题名称非法！");
+		    out.print("标题或非法！");
 		  }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

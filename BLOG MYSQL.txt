@@ -46,4 +46,21 @@ INSERT INTO user (u_name, password, power) VALUES ('admin', 'admin', 0);
 
 
 
+/* 回复表(Review) */
+CREATE TABLE review(
+r_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+c_id INT(10) NOT NULL,
+u_id INT(10) NOT NULL,
+ru_id INT(10),
+r_comment TEXT NOT NULL,
+r_date DATETIME NOT NULL
+)default charset=utf8;
+
+ALTER TABLE review ADD CONSTRAINT fk_review_comment_id FOREIGN KEY(c_id)
+REFERENCES comment(c_id) ON DELETE CASCADE;
+ALTER TABLE review ADD CONSTRAINT fk_review_user_id FOREIGN KEY(u_id)
+REFERENCES user(u_id) ON DELETE CASCADE;
+ALTER TABLE review ADD CONSTRAINT fk_review_r_user_id FOREIGN KEY(ru_id)
+REFERENCES user(u_id) ON DELETE CASCADE;
+
 
