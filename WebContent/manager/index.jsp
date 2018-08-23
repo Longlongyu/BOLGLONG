@@ -8,7 +8,16 @@
 </head>
 <body>
   <jsp:include page="c_nav.jsp" flush="true" />
-  <jsp:include page="c_posts.jsp" flush="true" />
+  <section class="container-fluid">
+    <section class="row">
+      <div class="col-xs-6 col-md-3">
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-8 shadow-box">
+        <jsp:include page="c_posts.jsp" flush="true" />
+      </div>
+    </section>
+  </section>
+  <%@ include file="b_footer.jsp"%>
   <%@ include file="script.jsp"%>
 </body>
 </html>

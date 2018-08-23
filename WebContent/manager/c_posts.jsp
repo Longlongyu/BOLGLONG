@@ -31,21 +31,24 @@
   <h2 class="title">
     <a href="post/<%=c_posts_user.getUserName(info.getAuthorId())%>?p_id=<%=info.getId()%>"><%=info.getTitle()%></a>
   </h2>
-  <p class="date"><%=info.getCreatedate()%></p>
-  <p class="author">
-      作者: <a href="user-page?username=<%=c_posts_user.getUserName(info.getAuthorId())%>"><%=c_posts_user.getUserName(info.getAuthorId())%></a>
-  </p>
-  <div class="entry">
+  <span class="author">
+    <span class="fa fa-pencil"></span>  <a href="user-page?username=<%=c_posts_user.getUserName(info.getAuthorId())%>"><%=c_posts_user.getUserName(info.getAuthorId())%></a>
+  </span>
+  <span> - </span>
+  <time class="date"><span class="fa fa-calendar"></span>  <%=info.getCreatedate().toGMTString() %></time>
+
+  <article class="post-article margin-top-16">
     <p><%=BlogUtil.Substring(info.getContent(), 300)%></p>
-  </div>
-  <p class="meta">
-    <a href="#" class="more">Read More</a>
+  </article>
+  <p class="post-readbtn margin-top-32">
+    <a href="post/<%=c_posts_user.getUserName(info.getAuthorId())%>?p_id=<%=info.getId()%>#readmore" class="more">Read More</a>
   </p>
+  <hr />
 </article>
 <% } %>
 </section>
-<section>
-    <a href="?p-page=<%=1 %>">第一页</a>
+<section id="page-nav">
+    <a href="?p-page=<%=1 %>"><span class="glyphicon glyphicon-step-backward"></span></a>
     <%
     if (posts_page_cut.getStartPageNum() != 1) {
     %>
@@ -62,5 +65,5 @@
     %>
       <span>...</span>
     <% } %>
-    <a href="?p-page=<%=posts_page_cut.getEndPageNum() %>">最后一页</a>
+    <a href="?p-page=<%=posts_page_cut.getEndPageNum() %>"><span class="glyphicon glyphicon-step-forward"></span></a>
 </section>

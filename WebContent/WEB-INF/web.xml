@@ -18,6 +18,14 @@
     <url-pattern>/signin</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>loginjsp</servlet-name>
+    <jsp-file>/manager/login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginjsp</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>managerjsp</servlet-name>
     <jsp-file>/manager/post-edit.jsp</jsp-file>
   </servlet>

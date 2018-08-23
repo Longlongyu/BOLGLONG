@@ -8,11 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>快来加入大家族吧！- 博客龙</title>
+  <title>注册账号 - 博客龙</title>
   <%@ include file="b_head.jsp"%>
 </head>
 <body>
-  <%@ include file="c_login.jsp"%>
   <%@ include file="c_signin.jsp"%>
   <%@ include file="script.jsp"%>
 </body>

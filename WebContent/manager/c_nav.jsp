@@ -1,45 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
   pageEncoding="utf-8"%>
 
-<nav class="navbar navbar-default">
-  <section class="container-fluid">
+<nav id="logoNav" class="navbar navbar-static-top">
+  <section class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/BlogTest">BlogLong</a>
+      <a class="navbar-brand" href="/BlogTest">
+        <img alt="BlogLong" src="/BlogTest/source/img/logo.png">
+      </a>
     </div>
+    <h3 class="navbar-text relative-top-36">想成你钟爱的博客社区！</h3>
+    <form class="form-search navbar-right relative-top-36" role="search">
+      <label class="label-search">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+      <input type="text" class="form-control input-search" placeholder="搜一下...">
+    </form>
+  </section>
+</nav>
+<nav class="navbar navbar-static-top nav-bd">
+  <section class="container">
     <div class="collapse navbar-collapse">
-      <form class="search navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-      </form>
-      <%
-        if (session.getAttribute("username") == null ) {
-      %>
-        <p class="navbar-text">你还没有登录账号呢！</p>
-        <button type="button" class="btn btn-default navbar-btn"><a href="signin">Sign in</a></button>
-        <button type="button" class="btn btn-default navbar-btn"><a href="login">Log in</a></button>
-        
-      <% } else {%>
-        <ul class="nav navbar-nav">
-          <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+      <ul class="nav nav-pills navbar-left relative-top-11">
+        <li role="presentation" class="active disabled"><a href="/BolgTest">首页</a></li>
+        <li role="presentation"><a href="#">什么</a></li>
+        <li role="presentation"><a href="#">施工中</a></li>
+        <li role="presentation"><a href="#">施工中</a></li>
+        <li role="presentation"><a href="#">施工中</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <%
+          if (session.getAttribute("username") == null ) {
+        %>
+          <li><a href="signin">注册</a></li>
+          <li><a href="login">登录</a></li>
+        <% } else {%>
+          <li role="presentation"><a href="#">消息 <span class="badge">3</span></a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的账号 <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a class="nav-link" href="user-page?username=<%=session.getAttribute("username")%>">我的博客</a></li>
-              <li class="active"><a class="nav-link" href="post-edit">写博客</a></li>
+              <li><a class="nav-link" href="post-edit">写博客</a></li>
               <li><a href="LogoutServlet">退出账号</a></li>
             </ul>
           </li>
-        </ul>
-      <% } %>
+        <% } %>
+      </ul>
     </div>
   </section>
-  
-      
-      
-      
-  
 </nav>
 
 
