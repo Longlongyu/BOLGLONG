@@ -1,7 +1,9 @@
 package com.longlongyu.Info;
 
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PostInfo {
@@ -9,7 +11,7 @@ public class PostInfo {
 	private int u_id; // 用户的编号
 	private String title = "";   // 文章的标题
 	private String content = ""; // 文章的内容
-	private Date createdate;     // 文章的创建日期
+	private Timestamp createdate;     // 文章的创建日期
 	private List<String> tags = new ArrayList<>();  // 文章的tag数组
 
 	public int getId() {
@@ -44,11 +46,17 @@ public class PostInfo {
 		this.content = content;
 	}
 
-	public Date getCreatedate() {
+	public Timestamp getCreatedate() {
 		return createdate;
 	}
+	
+	public String getTime() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateString = format.format(createdate);
+		return dateString;
+	}
 
-	public void setCreatedate(Date createdate) {
+	public void setCreatedate(Timestamp createdate) {
 		this.createdate = createdate;
 	}
 	

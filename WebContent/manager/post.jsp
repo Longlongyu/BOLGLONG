@@ -40,7 +40,7 @@
 <body>
   <%@ include file="c_nav.jsp"%>
   <p><%=post_post_info.getTitle()%></p>
-  <p>创作时间：<%=post_post_info.getCreatedate()%></p>
+  <p>创作时间：<%=post_post_info.getTime()%></p>
   <p>作者：<%=post_user.getUserName(post_post_info.getAuthorId())%></p>
   <p>
     <%=post_post_info.getContent()%>

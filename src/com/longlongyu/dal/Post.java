@@ -35,7 +35,7 @@ public class Post {
 			info.setAuthorId(rs.getInt("u_id"));
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
-			info.setCreatedate(rs.getDate("createdate"));
+			info.setCreatedate(rs.getTimestamp("createdate"));
 			list.add(info);
 		}
 		conn.close();
@@ -80,7 +80,7 @@ public class Post {
 			info.setAuthorId(rs.getInt("u_id"));
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
-			info.setCreatedate(rs.getDate("createdate"));
+			info.setCreatedate(rs.getTimestamp("createdate"));
 			list.add(info);
 		}
 		conn.close();
@@ -104,7 +104,7 @@ public class Post {
 			info.setAuthorId(rs.getInt("u_id"));
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
-			info.setCreatedate(rs.getDate("createdate"));
+			info.setCreatedate(rs.getTimestamp("createdate"));
 			list.add(info);
 		}
 		conn.close();
@@ -147,7 +147,7 @@ public class Post {
 			info.setAuthorId(rs.getInt("u_id"));
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
-			info.setCreatedate(rs.getDate("createdate"));
+			info.setCreatedate(rs.getTimestamp("createdate"));
 		}
 		conn.close();
 		return info;

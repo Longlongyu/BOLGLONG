@@ -1,5 +1,8 @@
 package com.longlongyu.data;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class BlogUtil {
 	/**
 	 * ½ØÈ¡×Ö·û´®
@@ -9,6 +12,16 @@ public class BlogUtil {
 			return "";
 		if(len>=input.length())
 			return input;
+		if(input.indexOf("<!--more-->") != -1){
+			Pattern p = Pattern.compile(".*<!--more-->", Pattern.DOTALL);
+	    Matcher m = p.matcher(input);
+	    String str = "";
+	    while(m.find()){
+	    	str = m.group();
+	    	break;
+	    }
+			return str;
+		}
 		return input.substring(0,len) + "...";
 	}
 }

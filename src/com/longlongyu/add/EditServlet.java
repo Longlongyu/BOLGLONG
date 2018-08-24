@@ -24,8 +24,6 @@ public class EditServlet extends HttpServlet {
     
 	// 正则表达式：验证标题
   final String REGEX_TITLE = "^.{1,50}$";
-	// 正则表达式：验证内容
-	 final String REGEX_CONENT = "^.{10,}";
   
   Post post = new Post();
   User user = new User();
@@ -56,13 +54,12 @@ public class EditServlet extends HttpServlet {
     String username = request.getParameter("username");    // 获取文章操作用户
     int id = Integer.parseInt(request.getParameter("id")); // 获取文章id
     String title = request.getParameter("title"); 				 // 获取标题
-		String content = request.getParameter("content"); 		 // 获取文章内容
+		String content = request.getParameter("test-editormd-markdown-doc"); 		 // 获取文章内容
 		try {
 			if (!user.isExistUsersInfo(username)
 					 || !username.equals((String) request.getSession().getAttribute("username"))) { // 判断用户是否存在
 				out.print("用户名未识别！请登陆或注册后再试！");
-			} else if (Pattern.matches(REGEX_TITLE, title)
-					 && Pattern.matches(REGEX_CONENT, content)) {    // 判断标题和内容是否符合要求
+			} else if (Pattern.matches(REGEX_TITLE, title)) {    // 判断标题和内容是否符合要求
 				PostInfo info = new PostInfo();
 				info.setTitle(title);
 				info.setContent(content);
@@ -76,7 +73,7 @@ public class EditServlet extends HttpServlet {
 					info.setId(id);
 					post.update(info);
 				}
-				request.getSession().setAttribute("postlist", null);
+				request.getSession().setAttribute("postlist", "new");
 				out.print("保存成功！");
 		  } else {
 		    out.print("标题或非法！");

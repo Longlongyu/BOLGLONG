@@ -12,7 +12,12 @@
   <%@ include file="b_head.jsp"%>
 </head>
 <body>
-  <%@ include file="c_login.jsp"%>
+  <section id="sign-page" class="container-fluid">
+    <h1 class="page-header">Blog Long <small>Log in Page</small></h1>
+    <%@ include file="c_login.jsp"%>
+    <h4>© Longlongyu • 2018 • <a href="mailto:longlongyuu@gmail.com">longlongyuu@gmail.com</a></h4>
+    <p>The site by <a href="https://github.com/Longlongyu/BOLGLONG">bloglong</a></p>
+  </section>
   <%@ include file="script.jsp"%>
 </body>
 </html>

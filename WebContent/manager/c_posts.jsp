@@ -12,11 +12,23 @@
 
 <%
   request.setCharacterEncoding("utf-8");
+  String url = "";
+  String p_username = (String) session.getAttribute("username");
   
-  if (c_posts_post_list.isEmpty()) {
-    String keyword = request.getParameter("keyword");
-    c_posts_post_list = c_posts_post.getList(keyword); 
+  if (session.getAttribute("postlist") == "new") {
+  	c_posts_post_list = new ArrayList<>();
+  	session.setAttribute("postlist", null);
   }
+  
+  if (c_posts_post_list.isEmpty() && request.getParameter("username") == null) {
+    String keyword = request.getParameter("keyword");
+    c_posts_post_list = c_posts_post.getList(keyword);
+  }
+  if (request.getParameter("username") != null) {
+  	p_username = request.getParameter("username");
+    url = "username=" + p_username + "&";
+  	c_posts_post_list = c_posts_post.getListByAuthor(c_posts_user.getUserId(p_username)); 
+   }
   if (request.getParameter("p-page") != null) {
   	c_posts_curr_page = Integer.parseInt(request.getParameter("p-page")) < 0 ? 1 : Integer.parseInt(request.getParameter("p-page"));
   }
@@ -31,24 +43,26 @@
   <h2 class="title">
     <a href="post/<%=c_posts_user.getUserName(info.getAuthorId())%>?p_id=<%=info.getId()%>"><%=info.getTitle()%></a>
   </h2>
+  <% if (request.getParameter("username") == null) { %>
   <span class="author">
     <span class="fa fa-pencil"></span>  <a href="user-page?username=<%=c_posts_user.getUserName(info.getAuthorId())%>"><%=c_posts_user.getUserName(info.getAuthorId())%></a>
   </span>
   <span> - </span>
-  <time class="date"><span class="fa fa-calendar"></span>  <%=info.getCreatedate().toGMTString() %></time>
+  <% } %>
+  <time class="date"><span class="fa fa-calendar"></span>  <%=info.getTime() %></time>
 
   <article class="post-article margin-top-16">
     <p><%=BlogUtil.Substring(info.getContent(), 300)%></p>
   </article>
   <p class="post-readbtn margin-top-32">
-    <a href="post/<%=c_posts_user.getUserName(info.getAuthorId())%>?p_id=<%=info.getId()%>#readmore" class="more">Read More</a>
+    <a href="post/<%=c_posts_user.getUserName(info.getAuthorId())%>?p_id=<%=info.getId()%>#more" class="more">Read More</a>
   </p>
   <hr />
 </article>
 <% } %>
 </section>
 <section id="page-nav">
-    <a href="?p-page=<%=1 %>"><span class="glyphicon glyphicon-step-backward"></span></a>
+    <a href="?<%=url %>p-page=1"><span class="glyphicon glyphicon-step-backward"></span></a>
     <%
     if (posts_page_cut.getStartPageNum() != 1) {
     %>
@@ -57,7 +71,7 @@
     }
     for (int i = posts_page_cut.getStartPageNum(); i <= posts_page_cut.getEndPageNum(); i++) {
     %>
-      <a href="?p-page=<%=i %>"><%=i %></a>
+      <a href="?<%=url %>p-page=<%=i %>"><%=i %></a>
     <% } %>
     
     <%
@@ -65,5 +79,5 @@
     %>
       <span>...</span>
     <% } %>
-    <a href="?p-page=<%=posts_page_cut.getEndPageNum() %>"><span class="glyphicon glyphicon-step-forward"></span></a>
+    <a href="?<%=url %>p-page=<%=posts_page_cut.getEndPageNum() %>"><span class="glyphicon glyphicon-step-forward"></span></a>
 </section>

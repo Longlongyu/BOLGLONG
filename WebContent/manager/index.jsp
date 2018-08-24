@@ -11,6 +11,7 @@
   <section class="container-fluid">
     <section class="row">
       <div class="col-xs-6 col-md-3">
+        <jsp:include page="c_catenav.jsp" flush="true" />
       </div>
       <div class="col-xs-12 col-sm-6 col-md-8 shadow-box">
         <jsp:include page="c_posts.jsp" flush="true" />

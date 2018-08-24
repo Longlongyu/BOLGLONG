@@ -21,7 +21,7 @@
   <section class="container">
     <div class="collapse navbar-collapse">
       <ul class="nav nav-pills navbar-left relative-top-11">
-        <li role="presentation" class="active disabled"><a href="/BolgTest">首页</a></li>
+        <li role="presentation" class="active disabled"><a href="/BlogTest">首页</a></li>
         <li role="presentation"><a href="#">什么</a></li>
         <li role="presentation"><a href="#">施工中</a></li>
         <li role="presentation"><a href="#">施工中</a></li>
