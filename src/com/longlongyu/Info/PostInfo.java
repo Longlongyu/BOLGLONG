@@ -13,6 +13,7 @@ public class PostInfo {
 	private String content = ""; // 文章的内容
 	private Timestamp createdate;     // 文章的创建日期
 	private List<String> tags = new ArrayList<>();  // 文章的tag数组
+	private int cate;
 
 	public int getId() {
 		return id;
@@ -20,6 +21,14 @@ public class PostInfo {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getCate() {
+		return cate;
+	}
+
+	public void setCate(int cate) {
+		this.cate = cate;
 	}
 
 	public int getAuthorId() {

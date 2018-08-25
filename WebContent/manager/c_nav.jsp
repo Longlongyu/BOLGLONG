@@ -22,10 +22,10 @@
     <div class="collapse navbar-collapse">
       <ul class="nav nav-pills navbar-left relative-top-11">
         <li role="presentation" class="active disabled"><a href="/BlogTest">首页</a></li>
-        <li role="presentation"><a href="#">什么</a></li>
-        <li role="presentation"><a href="#">施工中</a></li>
-        <li role="presentation"><a href="#">施工中</a></li>
-        <li role="presentation"><a href="#">施工中</a></li>
+        <li role="presentation"><a href="#">问答</a></li>
+        <li role="presentation"><a href="#">论坛</a></li>
+        <li role="presentation"><a href="#">App</a></li>
+        <li role="presentation"><a href="#">最新活动</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <%
@@ -40,6 +40,7 @@
             <ul class="dropdown-menu">
               <li><a class="nav-link" href="user-page?username=<%=session.getAttribute("username")%>">我的博客</a></li>
               <li><a class="nav-link" href="post-edit">写博客</a></li>
+              <li><a class="nav-link" href="">博客管理</a></li>
               <li><a href="LogoutServlet">退出账号</a></li>
             </ul>
           </li>

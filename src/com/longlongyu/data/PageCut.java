@@ -70,7 +70,7 @@ public class PageCut {
 	
 	public List<PostInfo> getCurrPageList() {
 		int n = currPageNum * pageSize;
-		int num = n < getTotalNumber() ? n : getTotalNumber() - 1;
+		int num = n < getTotalNumber() ? n : getTotalNumber();
 		List<PostInfo> result = dataList.subList((currPageNum - 1) * pageSize, num);
 		return result;
 	}

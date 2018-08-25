@@ -3,7 +3,7 @@
 <section id="signin-panel">
   <h2>欢迎注册</h2>
   <fieldset>
-    <form  id="signin" action="/BlogTest/SigninServlet" onsubmit="return false;" method="post">
+    <form id="signin" action="/BlogTest/SigninServlet" onsubmit="return false;" method="post">
       <div class="">
         <input type="text" name="name" placeholder="用户名">
       </div>

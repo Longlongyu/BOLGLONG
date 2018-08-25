@@ -10,5 +10,8 @@
     color: '255,0,255',
     count: 50,
   });
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
 </script>
     

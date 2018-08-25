@@ -15,7 +15,8 @@ p_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 u_id INT(10) NOT NULL,
 title CHAR(50) NOT NULL,
 createdate DATE NOT NULL,
-content TEXT NOT NULL
+content TEXT NOT NULL,
+cate INT(2) DEFAULT 0
 )default charset=utf8;
 
 /* 标记表(Tag) */
@@ -63,4 +64,11 @@ REFERENCES user(u_id) ON DELETE CASCADE;
 ALTER TABLE review ADD CONSTRAINT fk_review_r_user_id FOREIGN KEY(ru_id)
 REFERENCES user(u_id) ON DELETE CASCADE;
 
+/* 分类表(Categories) */
+CREATE TABLE categories(
+cate INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+cate_name CHAR(20) NOT NULL
+)default charset=utf8;
 
+ALTER TABLE post ADD CONSTRAINT fk_post_categories_cate FOREIGN KEY(cate)
+REFERENCES categories(cate) ON DELETE CASCADE;

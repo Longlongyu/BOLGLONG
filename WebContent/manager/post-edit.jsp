@@ -1,15 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"
   pageEncoding="utf-8"%>
 <%@ page import="com.longlongyu.dal.*"%>
 <%@ page import="com.longlongyu.add.*"%>
 <%@ page import="com.longlongyu.Info.*"%>
 <%@ page import="com.longlongyu.data.*"%>
-<%
-  request.setCharacterEncoding("utf-8");
-  
+<%!
   PostInfo info = new PostInfo();
+  CateInfo cateinfo = new CateInfo();
+  List<CateInfo> catelist = new ArrayList<>();
   Post post = new Post();
   User user = new User();
+  Cate cate = new Cate();
+%>
+<%
+  request.setCharacterEncoding("utf-8"); 
   String username = (String)session.getAttribute("username");
   String title = "未命名文章";
   String txt = "";
@@ -21,7 +25,9 @@
       txt = info.getContent();
     }
   }
-  
+  if (catelist.isEmpty()) {
+  	catelist = cate.getCates();
+  }
 %>
 <!DOCTYPE html>
 <html>
@@ -32,11 +38,18 @@
 <body>
 <section id="edit-area">
   <form id="post-edit" name="post-edit" method="post" action="/BlogTest/EditServlet" onsubmit="return false;">
-    <section id="">
-      <a href="/BlogTest">back</a>
-      <input type="text" name="title" id="postEditTitle" width="500px" value="<%=info.getTitle()%>"/>
-      <input type="submit" name="button" id="submitPostEditButton" value="save" />
-    </section>
+    <div class="margin-left-128">
+      <input type="text" name="title" id="postEditTitle" maxlength="30" placeholder="请输入标题" value="<%=info.getTitle()%>"/>
+      <select id="selectCate">
+        <% for (CateInfo cateinfo : catelist) { %>
+          <option value ="<%=cateinfo.getCateId() %>"
+          <% if (request.getParameter("id") != null && info.getCate() == cateinfo.getCateId()) { %>
+            selected = "selected"
+          <% } %>
+          ><%=cateinfo.getCateName() %></option>
+        <% } %>
+      </select>
+    </div>
    
     <div class="editormd" id="test-editormd">
       <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="postEditContent"><%=txt%></textarea>
@@ -44,17 +57,16 @@
     </div>
     <input type="hidden" name="id" value="<%=info.getId()%>" />
     <input type="hidden" name="username" value="<%=username%>" />
-  
+    <input type="hidden" name="cate" value="1" id="catevlue"/>
+    <a href="/BlogTest" class="btn btn-default margin-left-128" >返回首页</a>
+    <a id="submitPostEditButton" tabindex="0" class="btn btn-danger margin-left-32" 
+        role="button" data-toggle="popover" data-trigger="focus"
+        data-content="">存储</a>
   </form>
   <output id="postEditOutPut" style="display:none;"></output>
 </section>
-<section>
-  <div id="result">
-  </div>
-</section>
 
 <%@ include file="script.jsp"%>
-<script src="/BlogTest/source/editormd/lib/marked.min.js"></script>
 <script src="/BlogTest/source/editormd/lib/prettify.min.js"></script>
 <script src="/BlogTest/source/editormd/lib/raphael.min.js"></script>
 <script src="/BlogTest/source/editormd/lib/underscore.min.js"></script>
@@ -63,10 +75,25 @@
 <script src="/BlogTest/source/editormd/lib/jquery.flowchart.min.js"></script>
 <script src="/BlogTest/source/editormd/editormd.min.js"></script>
 <script type="text/javascript">
+  $("#selectCate").change(function(){
+  	$('#catevlue').val($('#selectCate option:selected').val());
+  });
   document.getElementById("submitPostEditButton").addEventListener('click', function (){
   	document.getElementById("postEditContent").value = document.getElementById("postEditContent").value.replace(/["]/g,"\\\"");
   	document.getElementById("postEditContent").value = document.getElementById("postEditContent").value.replace(/[']/g,"\\\'");
-  	$_ajax.submitForm("post-edit", "postEditOutPut");
+  	document.getElementById("submitPostEditButton").setAttribute("data-content", "存储中...");
+  	$('#submitPostEditButton').popover('show')
+  	$_ajax.submit("post-edit", function(text) {
+  	  if (text == "success") {
+  	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "存储成功!");
+  	  } else if (text == "user error") {
+  	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "失败！请登录后再试!");
+  	  } else {
+  	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "存储失败!");
+  	  }
+  	  $('#submitPostEditButton').popover('show')
+  	  console.log(text);
+  	});
   });
   $(function() {
     editormd("test-editormd", {

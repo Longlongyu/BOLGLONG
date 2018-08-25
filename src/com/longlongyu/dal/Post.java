@@ -36,6 +36,7 @@ public class Post {
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
+			info.setCate(rs.getInt("cate"));
 			list.add(info);
 		}
 		conn.close();
@@ -72,7 +73,7 @@ public class Post {
 	 */
 	public List<PostInfo> getListByTag(String tag) throws SQLException {
 		List<PostInfo> list = new ArrayList<PostInfo>();
-		String sql = "select post.p_id,u_id,title,content,createdate from post,tag where post.p_id=tag.p_id order by createdate desc";
+		String sql = "select post.p_id,u_id,title,content,createdate,cate from post,tag where post.p_id=tag.p_id order by createdate desc";
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
 			PostInfo info = new PostInfo();
@@ -81,10 +82,54 @@ public class Post {
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
+			info.setCate(rs.getInt("cate"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
+	}
+	
+	/**
+	 * 获得某分类下的所有博文列表
+	 * 
+	 * @param tag
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<PostInfo> getListByCate(int cate) throws SQLException {
+		List<PostInfo> list = new ArrayList<PostInfo>();
+		String sql = "select p_id,u_id,title,content,createdate,cate from post where cate=" + cate + " order by createdate desc";
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			PostInfo info = new PostInfo();
+			info.setId(rs.getInt("p_id"));
+			info.setAuthorId(rs.getInt("u_id"));
+			info.setTitle(rs.getString("title"));
+			info.setContent(rs.getString("content"));
+			info.setCreatedate(rs.getTimestamp("createdate"));
+			info.setCate(rs.getInt("cate"));
+			list.add(info);
+		}
+		conn.close();
+		return list;
+	}
+	
+	/**
+	 * 获得某分类下的所有博文数量
+	 * 
+	 * @param post number
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getPostNumByCate(int cate) throws SQLException {
+		int result = 0;
+		String sql = "select count(p_id) result from post where cate=" + cate;
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			result = rs.getInt("result");
+		}
+		conn.close();
+		return result;
 	}
 	
 	/**
@@ -105,12 +150,56 @@ public class Post {
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
+			info.setCate(rs.getInt("cate"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
 	}
-
+	
+	/**
+	 * 获得某作者的某类别博文列表
+	 * 
+	 * @param tag
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<PostInfo> getListByAuthorAndCate(int id, int cate) throws SQLException {
+		List<PostInfo> list = new ArrayList<PostInfo>();
+		String sql = "select * from post where u_id=" + id + " and cate=" + cate + " order by createdate desc";
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			PostInfo info = new PostInfo();
+			info.setId(rs.getInt("p_id"));
+			info.setAuthorId(rs.getInt("u_id"));
+			info.setTitle(rs.getString("title"));
+			info.setContent(rs.getString("content"));
+			info.setCreatedate(rs.getTimestamp("createdate"));
+			info.setCate(rs.getInt("cate"));
+			list.add(info);
+		}
+		conn.close();
+		return list;
+	}
+	
+	/**
+	 * 获得某作者的某分类下的所有博文数量
+	 * 
+	 * @param post number
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getPostNumByAuthorAndCate(int id, int cate) throws SQLException {
+		int result = 0;
+		String sql = "select count(p_id) result from post where u_id=" + id + " and cate=" + cate;
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			result = rs.getInt("result");
+		}
+		conn.close();
+		return result;
+	}
+	
 	/**
 	 * 获得单个博文的所有标签
 	 * 
@@ -148,6 +237,7 @@ public class Post {
 			info.setTitle(rs.getString("title"));
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
+			info.setCate(rs.getInt("cate"));
 		}
 		conn.close();
 		return info;
@@ -178,8 +268,8 @@ public class Post {
 	 * @return
 	 */
 	public int insert(PostInfo info) {
-		String sql = "insert into post(u_id,title,createdate,content) values";
-		sql = sql + "(" + info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent() + "')";
+		String sql = "insert into post(u_id,title,createdate,content,cate) values";
+		sql = sql + "(" + info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent()  + "'," + info.getCate()+")";
 		int result = 0;
 		System.out.println(sql);
 		result = conn.executeUpdate(sql);
@@ -194,8 +284,8 @@ public class Post {
 	 * @return
 	 */
 	public int insert(int id,PostInfo info) {
-		String sql = "insert into post(p_id,u_id,title,createdate,content) values";
-		sql = sql + "(" + id + ","+ info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent() + "')";
+		String sql = "insert into post(p_id,u_id,title,createdate,content,cate) values";
+		sql = sql + "(" + id + ","+ info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent()  + "'," + info.getCate()+")";
 		int result = 0;
 		System.out.println(sql);
 		result = conn.executeUpdate(sql);
@@ -211,7 +301,7 @@ public class Post {
 	 */
 	public int update(PostInfo info) {
 		String sql = "update post set " + " title='" + info.getTitle() + "',content='"
-					+ info.getContent() + "' " + " where p_id=" + info.getId() + "";
+					+ info.getContent() + "',cate=" + info.getCate() + " where p_id=" + info.getId() + "";
 		int result = 0;
 		System.out.println(sql);
 		result = conn.executeUpdate(sql);

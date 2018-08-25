@@ -86,6 +86,10 @@ var $_ajax = (function() {
 				case "hidden":
 					postData += inputs[i].name + "=" + inputs[i].value + "&";
 				break;
+				case "select":
+					console.log(inputs[i].options[inputs[i].selectedIndex].value)
+					postData += inputs[i].name + "=" + inputs[i].options[inputs[i].selectedIndex].value + "&";
+				break;
   			default:
   				continue;
   		}

@@ -30,9 +30,12 @@
     });
   </script>
 <% } else { %>
-  <span>你还不能评论！请</span>
-  <a href="/BlogTest/signin">登录</a>
-  <a href="/BlogTest/signin">注册</a>
-  <span>后重试。</span>
+  <section class="text-box">
+    <span>你还不能评论！请</span>
+    <a href="/BlogTest/login">登录</a>
+    <a href="/BlogTest/signin">注册</a>
+    <span>后重试。</span>
+  </section>
 <% } %>
 </section>
+

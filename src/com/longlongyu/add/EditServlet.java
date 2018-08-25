@@ -55,13 +55,16 @@ public class EditServlet extends HttpServlet {
     int id = Integer.parseInt(request.getParameter("id")); // 获取文章id
     String title = request.getParameter("title"); 				 // 获取标题
 		String content = request.getParameter("test-editormd-markdown-doc"); 		 // 获取文章内容
+		int cate = Integer.parseInt(request.getParameter("cate"));  // 获取分类
+		System.out.println(cate);
 		try {
 			if (!user.isExistUsersInfo(username)
 					 || !username.equals((String) request.getSession().getAttribute("username"))) { // 判断用户是否存在
-				out.print("用户名未识别！请登陆或注册后再试！");
+				out.print("user error");
 			} else if (Pattern.matches(REGEX_TITLE, title)) {    // 判断标题和内容是否符合要求
 				PostInfo info = new PostInfo();
 				info.setTitle(title);
+				info.setCate(cate);
 				info.setContent(content);
 				if (post.getPostInfo(id).getAuthorId() != user.getUserId(username)) {   // 判断用户和作者是否为同一人
 					int u_id = user.getUserId(username);
@@ -74,9 +77,9 @@ public class EditServlet extends HttpServlet {
 					post.update(info);
 				}
 				request.getSession().setAttribute("postlist", "new");
-				out.print("保存成功！");
+				out.print("success");
 		  } else {
-		    out.print("标题或非法！");
+		    out.print("error");
 		  }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -39,15 +39,33 @@
 </head>
 <body>
   <%@ include file="c_nav.jsp"%>
-  <p><%=post_post_info.getTitle()%></p>
-  <p>创作时间：<%=post_post_info.getTime()%></p>
-  <p>作者：<%=post_user.getUserName(post_post_info.getAuthorId())%></p>
-  <p>
-    <%=post_post_info.getContent()%>
-  </p>
-  <a href="/BlogTest">back</a>
-  <%@ include file="c_comm.jsp"%>
-  <%@ include file="c_comments.jsp"%>
+  
+  <section class="container-fluid">
+    <section class="row">
+      <div class="col-xs-6 col-md-3">
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <section class="shadow-box">
+          <h1><%=post_post_info.getTitle()%></h1>
+          <p>创作时间：<%=post_post_info.getTime()%></p>
+          <p>作者：<%=post_user.getUserName(post_post_info.getAuthorId())%></p>
+          <hr>
+          <article class="post"><%=post_post_info.getContent()%></article>
+        </section>
+        <section class="shadow-box margin-top-64">
+          <%@ include file="c_comm.jsp"%>
+          <%@ include file="c_comments.jsp"%>
+        </section>
+      </div>
+      
+    </section>
+  </section>
+  <%@ include file="b_footer.jsp"%>
   <%@ include file="script.jsp"%>
+  <script>
+    $(".post").each(function() {
+      $(this).html(marked($(this).html()))
+    });
+  </script>
 </body>
 </html>
