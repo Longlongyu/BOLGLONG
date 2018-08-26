@@ -28,6 +28,7 @@
   if (catelist.isEmpty()) {
   	catelist = cate.getCates();
   }
+  int hide_cate = 1;
 %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +44,9 @@
       <select id="selectCate">
         <% for (CateInfo cateinfo : catelist) { %>
           <option value ="<%=cateinfo.getCateId() %>"
-          <% if (request.getParameter("id") != null && info.getCate() == cateinfo.getCateId()) { %>
+          <% if (request.getParameter("id") != null && info.getCate() == cateinfo.getCateId()) { 
+            hide_cate = cateinfo.getCateId();
+          %>
             selected = "selected"
           <% } %>
           ><%=cateinfo.getCateName() %></option>
@@ -57,7 +60,7 @@
     </div>
     <input type="hidden" name="id" value="<%=info.getId()%>" />
     <input type="hidden" name="username" value="<%=username%>" />
-    <input type="hidden" name="cate" value="1" id="catevlue"/>
+    <input type="hidden" name="cate" value="<%=hide_cate%>" id="catevlue"/>
     <a href="/BlogTest" class="btn btn-default margin-left-128" >返回首页</a>
     <a id="submitPostEditButton" tabindex="0" class="btn btn-danger margin-left-32" 
         role="button" data-toggle="popover" data-trigger="focus"
@@ -104,7 +107,7 @@
         //让构造出来的HTML代码直接在name="mdtext"的textarea域中，实现提交到后台获取。
         saveHTMLToTextarea : true,
         //实现图片上传
-        imageUpload : true,
+        imageUpload : false,
         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp"],
         imageUploadURL : "${root}/uploadfile"
     });
