@@ -23,7 +23,7 @@ public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	// 正则表达式：验证评论
-  final String REGEX_COMMENT = "^.{6,600}";
+  final String REGEX_COMMENT = "^[^?&]{6,600}";
   
 	User user = new User();
 	Comment comm = new Comment();
@@ -68,8 +68,9 @@ public class CommentServlet extends HttpServlet {
 	  			info.setPostId(p_id);
 	  			info.setComment(comment);
 	  			comm.insert(info);                                       // 插入数据
+	  			out.print("success?user=" + username + "&comment=" + comment);
 		    } else {
-		      out.print("输入字数不符合要求！");
+		      out.print("failed");
 		    }
 			}
 		} catch (SQLException e) {

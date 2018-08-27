@@ -24,4 +24,11 @@ public class BlogUtil {
 		}
 		return input.substring(0,len) + "...";
 	}
+	
+	/**
+	 * 截取首字母并大写
+	 */
+	public static String upperCase(String str) {
+		return str.substring(0, 1).toUpperCase();
+	}
 }

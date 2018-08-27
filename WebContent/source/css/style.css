@@ -22,6 +22,7 @@ select {
 img {
   margin: auto;
   display: block;
+  max-width: 100%;
 }
 small {
   color: #aaa;
@@ -58,6 +59,9 @@ form.navbar-form {
   top: 3.25rem;
 }
 /* margin-top��ʽ */
+.margin-0 {
+  margin: 0;
+}
 .margin-top-16 {
   margin-top: 1rem;
 }
@@ -95,6 +99,12 @@ form.navbar-form {
   font-size: 150%;
 }
 /* form�������� */
+.width-48 {
+  width: 48%;
+}
+.inline-block {
+  display: inline-block;
+}
 .form-search {
   position: relative;
   padding-top: 2.5rem;
@@ -125,6 +135,7 @@ form.navbar-form {
 }
 .post-article {
   color: #666;
+  padding: 0 1rem;
 }
 .post-readbtn {
   text-align: center;
@@ -138,6 +149,31 @@ form.navbar-form {
   background-color: #23527c;
   color: #fff;
   text-decoration: none;
+}
+.prefix-block {
+  padding-left: 1rem;
+  border-left: 4px solid #666;
+}
+.text-align-right {
+  text-align: right;
+}
+.action {
+  vertical-align: top;
+  display: inline-block;
+  font-size: 3rem;
+  width: 6rem;
+  height: 6rem;
+  background: #3ab143;
+  color: #fff;
+  line-height: 6rem;
+  border-radius: 50%;
+  text-align: center;
+}
+.action-comment {
+  width: 90%;
+}
+.comment-time {
+  color: #999;
 }
 /* id��ʽ */
 #logoNav {
@@ -193,3 +229,23 @@ form.navbar-form {
   font-size: 20px;
   margin: .5rem;
 }
+#comment textarea {
+  width: 100%;
+  min-height: 13rem;
+}
+#comment textarea:focus {
+  outline: none !important;
+  background-color: #fafbf5;
+  border: 1px solid #4ca957;
+  -moz-box-shadow: 2px 2px 4px #e8e9e4 inset;
+  -webkit-box-shadow: 2px 2px 4px #e8e9e4 inset;
+  box-shadow: 2px 2px 4px #e8e9e4 inset;
+}
+#comment [name="button"] {
+  color: #fff;
+  background-color: #3ab143;
+  border-color: #399c3f;
+  width: 10rem;
+}
+
+

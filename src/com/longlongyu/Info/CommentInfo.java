@@ -1,13 +1,14 @@
 package com.longlongyu.Info;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class CommentInfo {
 	private int id;   // 评论编号
 	private int u_id; // 用户评论编号
 	private int p_id; // 评论所在的文章编号
 	private String comment = ""; //评论的内容
-	private Date c_date;  //评论发表的时间
+	private Timestamp c_date;  //评论发表的时间
 	public int getId() {
 		return id;
 	}
@@ -39,12 +40,14 @@ public class CommentInfo {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
-	public Date getCommentDate() {
-		return c_date;
+	
+	public String getCommentDate() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateString = format.format(c_date);
+		return dateString;
 	}
 	
-	public void setCommentDate(Date date) {
+	public void setCommentDate(Timestamp date) {
 		this.c_date = date;
 	}
 }

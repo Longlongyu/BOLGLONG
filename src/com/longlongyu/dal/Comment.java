@@ -20,7 +20,7 @@ public class Comment {
 	 */
 	public List<CommentInfo> getCommentByPost(int id) throws SQLException {
 		List<CommentInfo> list = new ArrayList<CommentInfo>();
-		String sql = "select * from comment where p_id=" + id + " order by c_id desc";
+		String sql = "select * from comment where p_id=" + id + " order by c_date desc";
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
 			CommentInfo info = new CommentInfo();
@@ -28,11 +28,29 @@ public class Comment {
 			info.setUserId(rs.getInt("u_id"));
 			info.setPostId(rs.getInt("p_id"));
 			info.setComment(rs.getString("comment"));
-			info.setCommentDate(rs.getDate("c_date"));
+			info.setCommentDate(rs.getTimestamp("c_date"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
+	}
+	
+	/**
+	 * 获得某分类下的所有博文数量
+	 * 
+	 * @param comm number
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getCommentNum(int p_id) throws SQLException {
+		int result = 0;
+		String sql = "select count(p_id) result from comment where p_id=" + p_id;
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			result = rs.getInt("result");
+		}
+		conn.close();
+		return result;
 	}
 	
 	/**
@@ -45,7 +63,6 @@ public class Comment {
 		String sql = "insert into comment(u_id,p_id,c_date,comment) values";
 		sql = sql + "(" + info.getUserId() + ",'" + info.getPostId() + "',now(),'" + info.getComment() + "')";
 		int result = 0;
-		System.out.println(sql);
 		result = conn.executeUpdate(sql);
 		conn.close();
 		return result;
