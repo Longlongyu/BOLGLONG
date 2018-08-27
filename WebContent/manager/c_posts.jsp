@@ -7,6 +7,7 @@
 <%! User c_posts_user = new User();
     Post c_posts_post = new Post();
     Cate c_posts_cate = new Cate();
+    Comment c_posts_comm = new Comment();
     List<PostInfo> c_posts_post_list = new ArrayList<>();
     int c_posts_curr_page = 1;
 %>
@@ -65,6 +66,10 @@
   <span> - </span>
   <span class="cate">
     <span class="fa fa-folder-o"></span> <%=c_posts_cate.getCateName(info.getCate()) %>
+  </span>
+  <span> - </span>
+  <span class="comm">
+    <span class="fa fa-comment-o"></span> <%=c_posts_comm.getCommentNum(info.getId()) %>
   </span>
   <article class="post-article margin-top-16"><%=BlogUtil.Substring(info.getContent(), 300)%></article>
   <p class="post-readbtn margin-top-32">

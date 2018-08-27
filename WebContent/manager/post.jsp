@@ -43,6 +43,8 @@
   <section class="container-fluid">
     <section class="row">
       <div class="col-xs-6 col-md-3">
+        <%@ include file="c_catenav.jsp"%>
+        <%@ include file="c_newposts.jsp"%>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-8">
         <section class="shadow-box">
@@ -52,10 +54,7 @@
           <hr>
           <article class="post"><%=post_post_info.getContent()%></article>
         </section>
-        <section class="shadow-box margin-top-64">
-          <%@ include file="c_comm.jsp"%>
-          <%@ include file="c_comments.jsp"%>
-        </section>
+        <%@ include file="c_comm.jsp"%>
       </div>
       
     </section>

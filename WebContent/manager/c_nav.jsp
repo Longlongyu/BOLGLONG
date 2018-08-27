@@ -21,7 +21,7 @@
   <section class="container">
     <div class="collapse navbar-collapse">
       <ul class="nav nav-pills navbar-left relative-top-11">
-        <li role="presentation" class="active disabled"><a href="/BlogTest">首页</a></li>
+        <li role="presentation" class="active"><a href="/BlogTest">首页</a></li>
         <li role="presentation"><a href="#">问答</a></li>
         <li role="presentation"><a href="#">论坛</a></li>
         <li role="presentation"><a href="#">App</a></li>
@@ -31,17 +31,17 @@
         <%
           if (session.getAttribute("username") == null ) {
         %>
-          <li><a href="signin">注册</a></li>
-          <li><a href="login">登录</a></li>
+          <li><a href="/BlogTest/signin">注册</a></li>
+          <li><a href="/BlogTest/login">登录</a></li>
         <% } else {%>
           <li role="presentation"><a href="#">消息 <span class="badge">3</span></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a class="nav-link" href="user-page?username=<%=session.getAttribute("username")%>">我的博客</a></li>
-              <li><a class="nav-link" href="post-edit">写博客</a></li>
-              <li><a class="nav-link" href="">博客管理</a></li>
-              <li><a href="LogoutServlet">退出账号</a></li>
+              <li><a class="nav-link" href="/BlogTest/user-page?username=<%=session.getAttribute("username")%>">我的博客</a></li>
+              <li><a class="nav-link" href="/BlogTest/post-edit">写博客</a></li>
+              <li><a class="nav-link" href="/BlogTest/add">博客管理</a></li>
+              <li><a href="/BlogTest/LogoutServlet">退出账号</a></li>
             </ul>
           </li>
         <% } %>

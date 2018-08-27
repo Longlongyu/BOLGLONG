@@ -15,13 +15,23 @@
   if (c_new_postlist.isEmpty()) {
   	c_new_postlist = c_new_post.getList("");
   }
+  if (request.getParameter("username") != null) {
+ 	String str = request.getParameter("username");
+ 	c_new_postlist = c_new_post.getListByAuthor(c_new_user.getUserId(str));
+  } else if (request.getServletPath().equals("/post")) {
+  	String str = request.getRequestURI().substring(15, request.getRequestURI().length());
+  	c_new_postlist = c_new_post.getListByAuthor(c_new_user.getUserId(str));
+  } else if (request.getServletPath().equals("/add")) {
+  	String str = (String) session.getAttribute("username");
+  	c_new_postlist = c_new_post.getListByAuthor(c_new_user.getUserId(str));
+  }
   int count = 0;
 %>
 <section id="newNav" class="margin-top-32 shadow-box">
-  <h2 class="margin-left-32">最新文章</h2>
+  <h2 class="prefix-block">最新文章</h2>
   <hr>
   
-<% for (PostInfo postinfo : c_new_postlist) {      
+<% for (PostInfo postinfo : c_new_postlist) {
 %>
   <section class="margin-left-16 margin-bottom-8">
     <a href="post/<%=c_new_user.getUserName(postinfo.getAuthorId())%>?p_id=<%=postinfo.getId()%>"><%=postinfo.getTitle()%></a>

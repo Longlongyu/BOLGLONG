@@ -18,20 +18,25 @@
   
 %>
 <section id="cateNav" class="shadow-box">
-  <h2 class="margin-left-32">分类</h2>
+  <h2 class="prefix-block">分类</h2>
   <hr>
   <% for (CateInfo cateinfo : c_cate_catelist) { 
        int num = 0;
        String url = "?";
-       
        if (request.getParameter("username") != null) {
-         url = "user-page?username=" + request.getParameter("username") + "&";
-         num = c_cate_post.getPostNumByAuthorAndCate(c_cate_user.getUserId(request.getParameter("username")), cateinfo.getCateId());
+      	 String str = request.getParameter("username");
+         url = "user-page?username=" + str + "&";
+         num = c_cate_post.getPostNumByAuthorAndCate(c_cate_user.getUserId(str), cateinfo.getCateId());
+       } else if (request.getServletPath().equals("/post")) {
+      	 String str = request.getRequestURI().substring(15, request.getRequestURI().length());
+      	 num = c_cate_post.getPostNumByAuthorAndCate(c_cate_user.getUserId(str), cateinfo.getCateId());
+       }  else if (request.getServletPath().equals("/add")) {
+         String str = (String) session.getAttribute("username");
+         num = c_cate_post.getPostNumByAuthorAndCate(c_cate_user.getUserId(str), cateinfo.getCateId());
        } else {
       	 num = c_cate_post.getPostNumByCate(cateinfo.getCateId());
        }
        url += "cate=" + cateinfo.getCateId();
-       
   %>
     <section class="margin-bottom-16 
     <% if (request.getParameter("cate") != null && Integer.parseInt(request.getParameter("cate")) == cateinfo.getCateId()) {%>
