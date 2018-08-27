@@ -315,8 +315,8 @@ public class Post {
 	 * @param id
 	 * @return
 	 */
-	public int delete(int id) {
-		String sql = "delete from post where p_id=" + id + "";
+	public int delete(int id, int u_id) {
+		String sql = "delete from post where p_id=" + id + " and u_id=" + u_id;
 		int result = 0;
 		result = conn.executeUpdate(sql);
 		conn.close();

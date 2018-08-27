@@ -5,7 +5,6 @@
 <%@ page import="com.longlongyu.Info.*"%>
 <%@ page import="com.longlongyu.data.*"%>
 <%!
-  PostInfo info = new PostInfo();
   CateInfo cateinfo = new CateInfo();
   List<CateInfo> catelist = new ArrayList<>();
   Post post = new Post();
@@ -17,6 +16,7 @@
   String username = (String)session.getAttribute("username");
   String title = "未命名文章";
   String txt = "";
+  PostInfo info = new PostInfo();
   if (request.getParameter("id") != null) {
   	PostInfo info2 = post.getPostInfo(Integer.parseInt(request.getParameter("id")));
     if (user.getUserId(username) == info2.getAuthorId()) {
@@ -95,7 +95,6 @@
   	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "存储失败!");
   	  }
   	  $('#submitPostEditButton').popover('show')
-  	  console.log(text);
   	});
   });
   $(function() {

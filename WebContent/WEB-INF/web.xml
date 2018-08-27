@@ -10,6 +10,14 @@
     <session-timeout>10</session-timeout>
   </session-config>
   <servlet>
+    <servlet-name>addjsp</servlet-name>
+    <jsp-file>/manager/manager.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addjsp</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>signinjsp</servlet-name>
     <jsp-file>/manager/signin.jsp</jsp-file>
   </servlet>

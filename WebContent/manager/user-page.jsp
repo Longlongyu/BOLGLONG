@@ -22,11 +22,16 @@
 </head>
 <body>
   <%@ include file="c_nav.jsp"%>
-  <h1>欢迎来到<%=u_username %>的主页！</h1>
+  <div class="jumbotron shadow-box" style="padding:3rem 10rem;">
+    <h1><%=u_username %>'s blog</h1>
+    <p>欢迎来到我的主页！</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
   <section class="container-fluid">
     <section class="row">
       <div class="col-xs-6 col-md-3">
         <%@ include file="c_catenav.jsp"%>
+        <%@ include file="c_newposts.jsp"%>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-8 shadow-box">
         <%@ include file="c_posts.jsp"%>
