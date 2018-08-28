@@ -17,7 +17,7 @@
     </form>
   </section>
 </nav>
-<nav class="navbar navbar-static-top nav-bd">
+<nav id="bottomNav" class="navbar navbar-static-top nav-bd">
   <section class="container">
     <div class="collapse navbar-collapse">
       <ul class="nav nav-pills navbar-left relative-top-11">

@@ -91,7 +91,7 @@
   	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "存储成功!");
   	  } else if (text == "user error") {
   	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "失败！请登录后再试!");
-  	  } else {
+  	  } else if (text == "error") {
   	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "存储失败!");
   	  }
   	  $('#submitPostEditButton').popover('show')

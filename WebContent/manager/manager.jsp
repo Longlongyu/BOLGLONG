@@ -22,6 +22,9 @@
       <div class="col-xs-12 col-sm-6 col-md-8 shadow-box">
         <%@ include file="c_mangerposts.jsp"%>
       </div>
+      <div class="col-xs-1">
+        <%@ include file="c_side.jsp"%>
+      </div>
     </section>
   </section>
   <%@ include file="b_footer.jsp"%>

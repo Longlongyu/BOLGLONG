@@ -247,5 +247,18 @@ form.navbar-form {
   border-color: #399c3f;
   width: 10rem;
 }
-
-
+#sideNav {
+  width: 5rem;
+  top: 62px;
+  padding: 0;
+}
+#sideNav .side-button {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #ccc;
+}
+#sideNav .side-button:hover span {
+  transform: scale(1.2);
+}

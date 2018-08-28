@@ -56,7 +56,9 @@
         </section>
         <%@ include file="c_comm.jsp"%>
       </div>
-      
+      <div class="col-xs-1">
+        <%@ include file="c_side.jsp"%>
+      </div>
     </section>
   </section>
   <%@ include file="b_footer.jsp"%>

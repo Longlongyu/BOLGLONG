@@ -17,6 +17,9 @@
       <div class="col-xs-12 col-sm-6 col-md-8 shadow-box">
         <jsp:include page="c_posts.jsp" flush="true" />
       </div>
+      <div class="col-xs-1">
+        <jsp:include page="c_side.jsp" flush="true" />
+      </div>
     </section>
   </section>
   <%@ include file="b_footer.jsp"%>

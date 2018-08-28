@@ -30,7 +30,7 @@ public class Conn {
 	 */
 	public ResultSet executeQuery(String sql) {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog?serverTimezone=UTC",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog?serverTimezone=Hongkong",
 			    "root", "123456");
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
