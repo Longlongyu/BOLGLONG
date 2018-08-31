@@ -2,6 +2,7 @@ package com.longlongyu.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +11,7 @@ public class Conn {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
+	PreparedStatement pstmt = null;
 	
 	/**
 	 * Conn 的构造函数。加载 JDBC。
@@ -23,6 +25,22 @@ public class Conn {
 		}
 	}
 
+	/**
+	 * 查询 sql 数据表
+	 * @param sql
+	 * @return PreparedStatement
+	 */
+	public PreparedStatement usePreparedStatement(String sql) {
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog?serverTimezone=Hongkong",
+			    "root", "123456");
+			pstmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pstmt;
+	}
+	
 	/**
 	 * 查询 sql 数据表
 	 * @param sql
@@ -58,10 +76,18 @@ public class Conn {
 		}
 		return result;	
 	}
+	
 	/**
 	 * 数据库关闭方法
 	 */
 	public void close(){
+		if(pstmt!=null)
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		if(rs!=null)
 			try {
 				rs.close();

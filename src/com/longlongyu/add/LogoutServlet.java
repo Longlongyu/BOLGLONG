@@ -33,7 +33,7 @@ public class LogoutServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession(false);    // 获取用户session
 		session.setAttribute("username", null);        // 获取用户名为null
-		response.sendRedirect("/BlogTest");						 // 重定向到首页
+		response.sendRedirect("/");						 // 重定向到首页
 		session.invalidate();
 	}
 

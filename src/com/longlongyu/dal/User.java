@@ -1,5 +1,6 @@
 package com.longlongyu.dal;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,7 +32,26 @@ public class User {
 		conn.close();
 		return list;
 	}
+	
+	/**
+	 * 获取用户权限
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getPower(String username) throws SQLException {
+		int result = -1;
+		String sql = "select power from user where u_name='" + username + "'";
 
+		ResultSet rs = conn.executeQuery(sql);
+		if (rs.next()) {
+			result = rs.getInt("power");
+		}
+		conn.close();
+		return result;
+	}
+	
 	/**
 	 * 判断当前登陆用户是否存在
 	 * 
@@ -156,13 +176,14 @@ public class User {
 	 * @param info
 	 * @return
 	 */
-	public int insert(Userinfo info) throws SQLException {
-		String sql = "insert into user(u_name,password,email) values";
-		sql = sql + "('" + info.getUsername() + "','" + info.getPassword() + "','" + info.getEmail() + "')";
-		int result = 0;
-		result = conn.executeUpdate(sql);
+	public void insert(Userinfo info) throws SQLException {
+		String sql = "insert into user(u_name,password,email) values(?,?,?)";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setString(1, info.getUsername());
+		ps.setString(2, info.getPassword());
+		ps.setString(3, info.getEmail());
+		ps.execute();
 		conn.close();
-		return result;
 	}
 	
 	/**
@@ -170,12 +191,12 @@ public class User {
 	 * @param username
 	 * @return
 	 */
-	public int updateTime(String username) {
-		String sql = "update user set u_time=now() where u_name='" + username + "'";
-		int result = 0;
-		result = conn.executeUpdate(sql);
+	public void updateTime(String username) throws SQLException {
+		String sql = "update user set u_time=now() where u_name=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setString(1, username);
+		ps.execute();
 		conn.close();
-		return result;
 	}
 	
 	/**
@@ -184,13 +205,15 @@ public class User {
 	 * @param info
 	 * @return
 	 */
-	public int update(Userinfo info) {
-		String sql = "update user set password='" + info.getPassword() + "',email='" + info.getEmail() + "',power='"
-		    + info.getPower() + "'" + "where u_name='" + info.getUsername() + "'";
-		int result = 0;
-		result = conn.executeUpdate(sql);
+	public void update(Userinfo info) throws SQLException {
+		String sql = "update user set password=?,email=?,power=? where u_name=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setString(1, info.getPassword());
+		ps.setString(2, info.getEmail());
+		ps.setInt(3, info.getPower());
+		ps.setString(4, info.getUsername());
+		ps.execute();
 		conn.close();
-		return result;
 	}
 
 	/**
@@ -199,11 +222,11 @@ public class User {
 	 * @param username
 	 * @return
 	 */
-	public int delete(String username) {
-		String sql = "delete from user where u_name='" + username + "'";
-		int result = 0;
-		result = conn.executeUpdate(sql);
+	public void delete(String username) throws SQLException {
+		String sql = "delete from user where u_name=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setString(1, username);
+		ps.execute();
 		conn.close();
-		return result;
 	}
 }

@@ -1,33 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-  pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
   if (session.getAttribute("username") == null) {
-    response.sendRedirect("/BlogTest"); 
+    response.sendRedirect("/"); 
   }
 %>
 <!DOCTYPE html>
 <html>
 <head>
   <title><%=session.getAttribute("username") %> | 管理文章 - 博客龙</title>
-  <%@ include file="b_head.jsp"%>
+  <jsp:include page="/manager/b_head.jsp" flush="true" />
 </head>
 <body>
-  <%@ include file="c_nav.jsp"%>
-  <section class="container-fluid">
-    <section class="row">
-      <div class="col-xs-6 col-md-3">
-        <%@ include file="c_catenav.jsp"%>
-        <%@ include file="c_newposts.jsp"%>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-8 shadow-box">
-        <%@ include file="c_mangerposts.jsp"%>
-      </div>
-      <div class="col-xs-1">
-        <%@ include file="c_side.jsp"%>
-      </div>
-    </section>
-  </section>
-  <%@ include file="b_footer.jsp"%>
-  <%@ include file="script.jsp"%>
+  <div id="wrapper">
+    <div class="overlay"></div>
+    <jsp:include page="/manager/c_rightside.jsp" flush="true" />
+    <div id="page-content-wrapper">
+      <button type="button"
+        class="hamburger is-closed animated fadeInLeft"
+        data-toggle="offcanvas">
+        <span class="hamb-top"></span> <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+      </button>
+      
+      <jsp:include page="/manager/c_nav.jsp" flush="true" />
+      <section class="container-fluid">
+        <section class="row">
+          <div class="col-xs-6 col-md-3">
+            <jsp:include page="/manager/c_catenav.jsp" flush="true" />
+            <jsp:include page="/manager/c_newposts.jsp" flush="true" />
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-8 shadow-box">
+            <jsp:include page="/manager/c_mangerposts.jsp" flush="true" />
+          </div>
+          <div class="col-xs-1">
+            <jsp:include page="/manager/c_side.jsp" flush="true" />
+          </div>
+        </section>
+      </section>
+      <jsp:include page="/manager/b_footer.jsp" flush="true" />
+      <jsp:include page="/manager/script.jsp" flush="true" />
+    </div>
+  </div>
+  
 </body>
 </html>

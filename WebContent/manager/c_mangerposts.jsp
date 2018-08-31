@@ -1,20 +1,22 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"
-  pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="com.longlongyu.dal.*"%>
 <%@ page import="com.longlongyu.add.*"%>
 <%@ page import="com.longlongyu.Info.*"%>
 <%@ page import="com.longlongyu.data.*"%>
-<%! User user = new User();
-    Post post = new Post();
-    Cate cate = new Cate();
-    Comment comm = new Comment();
-    List<PostInfo> post_list = new ArrayList<>();
-    int curr_page = 1;
+<%!
+  User user = new User();
+  Post post = new Post();
+  Cate cate = new Cate();
+  Comment comm = new Comment();
 %>
 <%
+  List<PostInfo> post_list = new ArrayList<>();
+  int curr_page = 1;
+
   request.setCharacterEncoding("utf-8");
   String url = "";
   String username = (String) session.getAttribute("username");
+  int uid = user.getUserId(username);
   
   if (session.getAttribute("postlist") == "new") {
     post_list = new ArrayList<>();
@@ -22,27 +24,29 @@
   }
   
   if (request.getParameter("cate") != null) {
-  	String p_cate = request.getParameter("cate");
+  	int p_cate = Integer.parseInt(request.getParameter("cate"));
+    
   	url += "cate=" + p_cate + "&";
   	session.setAttribute("postlist", "new");
-  	post_list = post.getListByAuthorAndCate(user.getUserId(username),Integer.parseInt(p_cate));
+    
+  	post_list = post.getListByAuthorAndCate(uid, p_cate);
   } else {
-  	post_list = post.getListByAuthor(user.getUserId(username));
+  	post_list = post.getListByAuthor(uid);
   }
   
   if (request.getParameter("p-page") != null) {
-  	curr_page = Integer.parseInt(request.getParameter("p-page")) < 0 ? 1 : Integer.parseInt(request.getParameter("p-page"));
+  	int p_page = Integer.parseInt(request.getParameter("p-page"));
+  	curr_page = p_page < 0 ? 1 : p_page;
   }
+  
   PageCut page_cut = new PageCut(post_list, curr_page, 15);
   List<PostInfo> curr_page_posts = page_cut.getCurrPageList();
 %>
 <section>
-<%
-  for (PostInfo info : curr_page_posts) {
-%>
+<% for (PostInfo info : curr_page_posts) { %>
 <article class="post">
   <h2 class="title">
-    <a href="/BlogTest/post-edit?id=<%=info.getId()%>"><%=info.getTitle()%></a>
+    <a href="/post-edit?id=<%=info.getId()%>"><%=info.getTitle()%></a>
   </h2>
   <section class="inline-block width-48">
     <time class="date"><span class="fa fa-calendar"></span>  <%=info.getTime() %></time>
@@ -56,7 +60,7 @@
     </span>
   </section>
   <section class="inline-block width-48 text-align-right">
-    <a class="btn btn-primary margin-left-16" href="/BlogTest/post-edit?id=<%=info.getId()%>">修改</a>
+    <a class="btn btn-primary margin-left-16" href="/post-edit?id=<%=info.getId()%>">修改</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-<%=info.getId()%>">删除</button>
   </section>
   <hr />
@@ -72,7 +76,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button id="delete-submit-<%=info.getId()%>" type="button" class="btn btn-primary">确认</button>
-        <form id="delete-<%=info.getId()%>" name="delete" method="post" action="/BlogTest/DeleteServlet" onsubmit="return false;">
+        <form id="delete-<%=info.getId()%>" name="delete" method="post" action="/DeleteServlet" onsubmit="return false;">
           <input type="hidden" name="id" value="<%=info.getId()%>" />
           <input type="hidden" name="username" value="<%=username%>" />
         </form>
@@ -93,21 +97,14 @@
 </section>
 <section id="page-nav">
   <a href="?<%=url %>p-page=1"><span class="glyphicon glyphicon-step-backward"></span></a>
-  <%
-    if (page_cut.getStartPageNum() != 1) {
-  %>
-    <span>...</span>
-  <%  
-    }
-    for (int i = page_cut.getStartPageNum(); i <= page_cut.getEndPageNum(); i++) {
-  %>
-    <a href="?<%=url %>p-page=<%=i %>"><%=i %></a>
+    <% if (page_cut.getStartPageNum() != 1) {%>
+      <span>...</span>
+    <%  } for (int i = page_cut.getStartPageNum(); i <= page_cut.getEndPageNum(); i++) { %>
+      <a href="?<%=url %>p-page=<%=i %>"><%=i %></a>
     <% } %>
     
-    <%
-    if (page_cut.getTotalPages() != page_cut.getEndPageNum()) {
-    %>
+    <% if (page_cut.getTotalPages() != page_cut.getEndPageNum()) { %>
       <span>...</span>
-  <% } %>
+    <% } %>
   <a href="?<%=url %>p-page=<%=page_cut.getEndPageNum() %>"><span class="glyphicon glyphicon-step-forward"></span></a>
 </section>

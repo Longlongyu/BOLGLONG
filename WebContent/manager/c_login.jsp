@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <section id="login-panel">
   <h2>欢迎登录</h2>
   <fieldset>
-    <form  id="login" action="/BlogTest/LoginServlet" onsubmit="return false;" method="post">
+    <form  id="login" action="/LoginServlet" onsubmit="return false;" method="post">
       <div class="">
         <input type="text" name="name" placeholder="用户名">
       </div>
@@ -15,7 +14,7 @@
     <div id="myDiv" style="display:none;"></div>
   </fieldset>
   <div class="margin-top-32">
-    <span>已有账号？<a href="/BlogTest/signin">我要注册</a></span>
+    <span>已有账号？<a href="/signin">我要注册</a></span>
   </div>
 </section>
   

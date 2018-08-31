@@ -16,7 +16,8 @@ u_id INT(10) NOT NULL,
 title CHAR(50) NOT NULL,
 createdate DATE NOT NULL,
 content TEXT NOT NULL,
-cate INT(2) DEFAULT 0
+cate INT(2) DEFAULT 0，
+count INT DEFAULT 0
 )default charset=utf8;
 
 /* 标记表(Tag) */

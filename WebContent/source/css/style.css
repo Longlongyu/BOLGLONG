@@ -1,5 +1,6 @@
 /* ��ʽ���� */
 body {
+  background-color: #f0f0f0 !important;
   font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Noto Sans CJK SC,WenQuanYi Micro Hei,Arial,sans-serif;
 }
 input[type="text"][name="name"],input[type="text"][name="email"],input[type="text"][name="title"],input[type="password"] {
@@ -31,15 +32,12 @@ small {
 nav.nav-bd {
   position: -webkit-sticky;
   position: sticky;
-  background-color: #fff;
   top: 0;
   box-shadow: 0 0 2px 1px #999;
+  z-index: 2;
 }
 a.navbar-brand {
   height: auto;
-}
-.navbar-header img {
-  height: 6rem;
 }
 
 form.navbar-form {
@@ -84,6 +82,9 @@ form.navbar-form {
 .margin-left-128 {
   margin-left: 8rem;
 }
+.margin-right-32 {
+  margin-right: 2rem;
+}
 /* margin-bottom */
 .margin-bottom-8 {
   margin-bottom: .5rem;
@@ -107,18 +108,23 @@ form.navbar-form {
 }
 .form-search {
   position: relative;
-  padding-top: 2.5rem;
+  padding-top: 2rem;
   margin: -1.25rem auto 0;
 }
 .form-search .label-search {
   position: absolute;
   left: 1rem;
-  top: 3.35rem;
+  color: #ccc;
+}
+.form-search .label-search .glyphicon {
+  top: 8px;
 }
 .form-search .input-search {
   padding-left: 3rem;
   padding-right: 10rem;
   border-radius: 1.5rem;
+  background-color: #333;
+  border: 1px solid #1a1a1a;
 }
 /* ��ʽ */
 .text-box {
@@ -128,10 +134,9 @@ form.navbar-form {
 .fixed {
   position: fixed;
 }
-.shadow-box {
+.white-box {
   padding: 2rem 3rem;
   background-color: #fff;
-  box-shadow: 0 0 2px 1px #999;
 }
 .post-article {
   color: #666;
@@ -154,6 +159,9 @@ form.navbar-form {
   padding-left: 1rem;
   border-left: 4px solid #666;
 }
+.text-align-center {
+  text-align: center;
+}
 .text-align-right {
   text-align: right;
 }
@@ -169,19 +177,28 @@ form.navbar-form {
   border-radius: 50%;
   text-align: center;
 }
-.action-comment {
-  width: 90%;
-}
 .comment-time {
   color: #999;
 }
 /* id��ʽ */
-#logoNav {
-  background-color: #fff;
+#mainNav {
+  background-color: #1a1a1a;
   margin-bottom: 0;
+  border-radius: 0;
+}
+#mainNav .navbar-header img {
+  height: 2rem;
+}
+#mainNav a {
+  color: #999;
+}
+#mainNav a:hover {
+  color: #666;
 }
 #web-footer {
-  margin-top: 5rem;
+  background: #1a1a1a;
+  color: #ccc;
+  margin-top: 4rem;
   width: 100%;
 }
 #web-footer>section {

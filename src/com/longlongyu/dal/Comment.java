@@ -1,5 +1,6 @@
 package com.longlongyu.dal;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,13 +60,14 @@ public class Comment {
 	 * @param info
 	 * @return
 	 */
-	public int insert(CommentInfo info) {
-		String sql = "insert into comment(u_id,p_id,c_date,comment) values";
-		sql = sql + "(" + info.getUserId() + ",'" + info.getPostId() + "',now(),'" + info.getComment() + "')";
-		int result = 0;
-		result = conn.executeUpdate(sql);
+	public void insert(CommentInfo info) throws SQLException {
+		String sql = "insert into comment(u_id,p_id,c_date,comment) values(?,?,now(),?)";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setInt(1, info.getUserId());
+		ps.setInt(2, info.getPostId());
+		ps.setString(3, info.getComment());
+		ps.execute();
 		conn.close();
-		return result;
 	}
 
 	/**
@@ -74,14 +76,14 @@ public class Comment {
 	 * @param info
 	 * @return
 	 */
-	public int update(CommentInfo info) {
-		String sql = "update comment set u_id='" + info.getUserId() + "',comment='"
-					+ info.getComment() + "' " + " where p_id=" + info.getPostId() + "";
-		int result = 0;
-		System.out.println(sql);
-		result = conn.executeUpdate(sql);
+	public void update(CommentInfo info) throws SQLException {
+		String sql = "update comment set u_id=?,comment=? where p_id=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setInt(1, info.getUserId());
+		ps.setString(2, info.getComment());
+		ps.setInt(3, info.getPostId());
+		ps.execute();
 		conn.close();
-		return result;
 	}
 
 	/**
@@ -90,11 +92,11 @@ public class Comment {
 	 * @param id
 	 * @return
 	 */
-	public int delete(int id) {
-		String sql = "delete from comment where c_id=" + id + "";
-		int result = 0;
-		result = conn.executeUpdate(sql);
+	public void delete(int id) throws SQLException {
+		String sql = "delete from comment where c_id=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setInt(1, id);
+		ps.execute();
 		conn.close();
-		return result;
 	}
 }

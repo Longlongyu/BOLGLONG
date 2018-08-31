@@ -14,6 +14,7 @@ public class PostInfo {
 	private Timestamp createdate;     // 文章的创建日期
 	private List<String> tags = new ArrayList<>();  // 文章的tag数组
 	private int cate;
+	private int count;
 
 	public int getId() {
 		return id;
@@ -37,6 +38,14 @@ public class PostInfo {
 
 	public void setAuthorId(int id) {
 		this.u_id = id;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public String getTitle() {

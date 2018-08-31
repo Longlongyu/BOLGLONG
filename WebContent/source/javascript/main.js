@@ -35,34 +35,8 @@ var $_main = (function() {
             + seperator2 + date.getSeconds();
     return currentdate;
   }
-  function outputComment(str) {
-  	if(!isSuccess(str)) return;
-  	var data = splitDate(str);
-  	var el = "<section class=\"comment margin-bottom-16\" date-floor=\"" + getNewFoolr() + "\">" +
-      "<div class=\"action\">" + getFirstUpperCase(data["user"]) + "</div>" +
-      "<div class=\"action-comment inline-block margin-left-16\">" +
-        "<h3 class=\"comment-user margin-0\">" +
-          data["user"] + " "
-          "<small>- " + getNewFoolr() + " -</small>" +
-        "</h3>" +
-        "<time class=\"comment-time\">" +
-          "<span class=\"fa fa-clock-o\"></span>" +
-          getCurrTime() +
-        "</time>" +
-        "<div class=\"comment-content\">" +
-        	data["comment"] +
-        "</div>" +
-        "<div class=\"text-align-right\">" +
-          "<a class=\"navbar-link\">回复</a>" +
-        "</div>" +
-      "</div>" +
-      "<hr>" +
-    "</section>";
-  	return el;
-  }
   return {
   	isSuccess : isSuccess,
-  	splitDate : splitDate,
-  	outputComment : outputComment
+  	splitDate : splitDate
   }
 })();

@@ -24,7 +24,6 @@ public class EditServlet extends HttpServlet {
     
 	// 正则表达式：验证标题
   final String REGEX_TITLE = "^.{1,50}$";
-  
   Post post = new Post();
   User user = new User();
   /**

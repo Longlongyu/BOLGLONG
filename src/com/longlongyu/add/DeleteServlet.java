@@ -55,6 +55,7 @@ public class DeleteServlet extends HttpServlet {
 			} else if (post.getPostInfo(id).getAuthorId() == user.getUserId(username)) {   // 判断用户和作者是否为同一人
 				int u_id = user.getUserId(username);
 				post.delete(id, u_id);
+				request.getSession().setAttribute("postlist", "new");
 				out.print("success");
 			} else {
 				out.print("failed");

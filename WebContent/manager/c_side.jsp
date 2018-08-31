@@ -15,7 +15,7 @@
 </section>
 <script type="text/javascript">
   $(window).scroll(function() {
-  	if($("#bottomNav").offset().top > 100) {
+  	if($("#mainNav").offset().top > 100) {
   	  $("#sideNav").css("position","fixed");
   	} else {
   	  $("#sideNav").css("position","static");

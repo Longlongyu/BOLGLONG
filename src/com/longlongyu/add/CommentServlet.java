@@ -68,7 +68,7 @@ public class CommentServlet extends HttpServlet {
 	  			info.setPostId(p_id);
 	  			info.setComment(comment);
 	  			comm.insert(info);                                       // ≤Â»Î ˝æ›
-	  			out.print("success?user=" + username + "&comment=" + comment);
+	  			out.print("success");
 		    } else {
 		      out.print("failed");
 		    }

@@ -22,7 +22,7 @@ public class SigninServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	// 正则表达式：验证用户名
-  final String REGEX_USERNAME = "^[A-Za-z][A-Za-z1-9_]{6,20}$";
+  final String REGEX_USERNAME = "^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9_\u4e00-\u9fa5]{6,20}$";
   //正则表达式：验证密码
   final String REGEX_PASSWORD = "^[a-zA-Z0-9]{6,20}$";
   //正则表达式：验证邮箱
@@ -63,10 +63,21 @@ public class SigninServlet extends HttpServlet {
 			if (user.isExistUsersInfo(name)) {                 // 判断用户是否存在
 				out.print("该用户已存在！请重新输入！");
 			} else {
-		    if (Pattern.matches(REGEX_USERNAME, name) 
-		    		&& Pattern.matches(REGEX_PASSWORD, password) 
-		    		&& Pattern.matches(REGEX_EMAIL, email)) {    // 判断输入合法性
-	      	Userinfo info = new Userinfo();
+				int count = 0;
+		    if (!Pattern.matches(REGEX_USERNAME, name)) {
+		    	out.println("用户名不符合要求！");
+		    	count++;
+		    }
+		    if (!Pattern.matches(REGEX_PASSWORD, password)) {
+		    	out.println("密码不符合要求！");
+		    	count++;
+		    }
+		    if (!Pattern.matches(REGEX_EMAIL, email)) {   // 判断输入合法性
+		      out.println("邮箱不符合要求！");
+		      count++;
+		    }
+		    if (count == 0) {
+		    	Userinfo info = new Userinfo();
 	  			info.setUsername(name);
 	  			info.setPassword(password);
 	  			info.setEmail(email);
@@ -78,7 +89,7 @@ public class SigninServlet extends HttpServlet {
 	      	request.getSession().setAttribute("username", name);// Session记录对应用户
 	        out.print("<script>setTimeout('location.reload();', 1000)</script>");
 		    } else {
-		      out.print("输入错误！请重新输入！");
+		    	out.println("请重新输入！");
 		    }
 			}
 		} catch (SQLException e) {

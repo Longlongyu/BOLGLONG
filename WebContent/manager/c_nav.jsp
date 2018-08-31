@@ -1,49 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-  pageEncoding="utf-8"%>
-
-<nav id="logoNav" class="navbar navbar-static-top">
-  <section class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/BlogTest">
-        <img alt="BlogLong" src="/BlogTest/source/img/logo.png">
-      </a>
-    </div>
-    <h3 class="navbar-text relative-top-36">想成你钟爱的博客社区！</h3>
-    <form class="form-search navbar-right relative-top-36" role="search">
-      <label class="label-search">
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      </label>
-      <input type="text" class="form-control input-search" placeholder="搜一下...">
-    </form>
-  </section>
-</nav>
-<nav id="bottomNav" class="navbar navbar-static-top nav-bd">
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<nav id="mainNav" class="navbar nav-bd">
+  <div class="navbar-header margin-left-128">
+    <a class="navbar-brand" href="/">
+      <img alt="bloglong" src="/source/img/bokelong2.png">
+    </a>
+  </div>
   <section class="container">
     <div class="collapse navbar-collapse">
-      <ul class="nav nav-pills navbar-left relative-top-11">
-        <li role="presentation" class="active"><a href="/BlogTest">首页</a></li>
-        <li role="presentation"><a href="#">问答</a></li>
-        <li role="presentation"><a href="#">论坛</a></li>
-        <li role="presentation"><a href="#">App</a></li>
-        <li role="presentation"><a href="#">最新活动</a></li>
+      <ul class="nav navbar-nav">
+        <li role="presentation" class="active"><a href="/">首页</a></li>
+        <li role="presentation"><a href="">问答</a></li>
+        <li role="presentation"><a href="">论坛</a></li>
+        <li role="presentation"><a href="">App</a></li>
+        <li role="presentation"><a href="">活动</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <%
-          if (session.getAttribute("username") == null ) {
-        %>
-          <li><a href="/BlogTest/signin">注册</a></li>
-          <li><a href="/BlogTest/login">登录</a></li>
-        <% } else {%>
+        <li class="margin-right-32">
+          <form class="form-search navbar-right" role="search">
+            <label class="label-search">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </label>
+            <input type="text" class="form-control input-search" placeholder="搜一下...">
+          </form>
+        </li>
+        <% if (session.getAttribute("username") == null ) { %>
+          <li><a href="/signin">注册账号</a></li>
+          <li><a href="/login">登录社区</a></li>
+        <% } else { %>
           <li role="presentation"><a href="#">消息 <span class="badge">3</span></a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username")%> <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a class="nav-link" href="/BlogTest/user-page?username=<%=session.getAttribute("username")%>">我的博客</a></li>
-              <li><a class="nav-link" href="/BlogTest/post-edit">写博客</a></li>
-              <li><a class="nav-link" href="/BlogTest/add">博客管理</a></li>
-              <li><a href="/BlogTest/LogoutServlet">退出账号</a></li>
-            </ul>
-          </li>
+          <li role="presentation"><a href="#"><%=session.getAttribute("username")%></a></li>
         <% } %>
       </ul>
     </div>

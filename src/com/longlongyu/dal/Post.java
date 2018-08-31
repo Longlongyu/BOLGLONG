@@ -1,5 +1,6 @@
 package com.longlongyu.dal;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,12 +38,13 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
+			info.setCount(rs.getInt("count"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
 	}
-	
+
 	/**
 	 * 获取可用的博文id
 	 * 
@@ -63,7 +65,7 @@ public class Post {
 		conn.close();
 		return result;
 	}
-	
+
 	/**
 	 * 获得某标签下的所有博文列表
 	 * 
@@ -73,7 +75,7 @@ public class Post {
 	 */
 	public List<PostInfo> getListByTag(String tag) throws SQLException {
 		List<PostInfo> list = new ArrayList<PostInfo>();
-		String sql = "select post.p_id,u_id,title,content,createdate,cate from post,tag where post.p_id=tag.p_id order by createdate desc";
+		String sql = "select post.p_id,u_id,title,content,createdate,cate,count from post,tag where post.p_id=tag.p_id order by createdate desc";
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
 			PostInfo info = new PostInfo();
@@ -83,12 +85,13 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
+			info.setCount(rs.getInt("count"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
 	}
-	
+
 	/**
 	 * 获得某分类下的所有博文列表
 	 * 
@@ -98,7 +101,8 @@ public class Post {
 	 */
 	public List<PostInfo> getListByCate(int cate) throws SQLException {
 		List<PostInfo> list = new ArrayList<PostInfo>();
-		String sql = "select p_id,u_id,title,content,createdate,cate from post where cate=" + cate + " order by createdate desc";
+		String sql = "select * from post where cate=" + cate
+		    + " order by createdate desc";
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
 			PostInfo info = new PostInfo();
@@ -108,12 +112,13 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
+			info.setCount(rs.getInt("count"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
 	}
-	
+
 	/**
 	 * 获得某分类下的所有博文数量
 	 * 
@@ -131,7 +136,7 @@ public class Post {
 		conn.close();
 		return result;
 	}
-	
+
 	/**
 	 * 获得某作者的所有博文列表
 	 * 
@@ -151,12 +156,13 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
+			info.setCount(rs.getInt("count"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
 	}
-	
+
 	/**
 	 * 获得某作者的某类别博文列表
 	 * 
@@ -176,12 +182,13 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
+			info.setCount(rs.getInt("count"));
 			list.add(info);
 		}
 		conn.close();
 		return list;
 	}
-	
+
 	/**
 	 * 获得某作者的某分类下的所有博文数量
 	 * 
@@ -199,7 +206,7 @@ public class Post {
 		conn.close();
 		return result;
 	}
-	
+
 	/**
 	 * 获得单个博文的所有标签
 	 * 
@@ -238,11 +245,12 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
+			info.setCount(rs.getInt("count"));
 		}
 		conn.close();
 		return info;
 	}
-	
+
 	/**
 	 * 是否有某条博文
 	 * 
@@ -260,37 +268,40 @@ public class Post {
 		conn.close();
 		return result;
 	}
-	
+
 	/**
 	 * 博文插入操作
 	 * 
 	 * @param info
 	 * @return
 	 */
-	public int insert(PostInfo info) {
-		String sql = "insert into post(u_id,title,createdate,content,cate) values";
-		sql = sql + "(" + info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent()  + "'," + info.getCate()+")";
-		int result = 0;
-		System.out.println(sql);
-		result = conn.executeUpdate(sql);
+	public void insert(PostInfo info) throws SQLException {
+		String sql = "insert into post(u_id,title,createdate,content,cate) values(?,?,now(),?,?)";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setInt(1, info.getAuthorId());
+		ps.setString(2, info.getTitle());
+		ps.setString(3, info.getContent());
+		ps.setInt(4, info.getCate());
+		ps.execute();
 		conn.close();
-		return result;
 	}
-	
+
 	/**
 	 * 博文插入操作
 	 * 
 	 * @param info
 	 * @return
 	 */
-	public int insert(int id,PostInfo info) {
-		String sql = "insert into post(p_id,u_id,title,createdate,content,cate) values";
-		sql = sql + "(" + id + ","+ info.getAuthorId() + ",'" + info.getTitle() + "',now(),'" + info.getContent()  + "'," + info.getCate()+")";
-		int result = 0;
-		System.out.println(sql);
-		result = conn.executeUpdate(sql);
+	public void insert(int id, PostInfo info) throws SQLException {
+		String sql = "insert into post(p_id,u_id,title,createdate,content,cate) values(?,?,?,now(),?,?)";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setInt(1, id);
+		ps.setInt(2, info.getAuthorId());
+		ps.setString(3, info.getTitle());
+		ps.setString(4, info.getContent());
+		ps.setInt(5, info.getCate());
+		ps.execute();
 		conn.close();
-		return result;
 	}
 
 	/**
@@ -299,14 +310,15 @@ public class Post {
 	 * @param info
 	 * @return
 	 */
-	public int update(PostInfo info) {
-		String sql = "update post set " + " title='" + info.getTitle() + "',content='"
-					+ info.getContent() + "',cate=" + info.getCate() + " where p_id=" + info.getId() + "";
-		int result = 0;
-		System.out.println(sql);
-		result = conn.executeUpdate(sql);
+	public void update(PostInfo info) throws SQLException {
+		String sql = "iupdate post set title=?,content=?,cate=? where p_id=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setString(1, info.getTitle());
+		ps.setString(2, info.getContent());
+		ps.setInt(3, info.getCate());
+		ps.setInt(4, info.getId());
+		ps.execute();
 		conn.close();
-		return result;
 	}
 
 	/**
@@ -315,11 +327,12 @@ public class Post {
 	 * @param id
 	 * @return
 	 */
-	public int delete(int id, int u_id) {
-		String sql = "delete from post where p_id=" + id + " and u_id=" + u_id;
-		int result = 0;
-		result = conn.executeUpdate(sql);
+	public void delete(int id, int u_id) throws SQLException {
+		String sql = "delete from post where p_id=? and u_id=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setInt(1, id);
+		ps.setInt(2, u_id);
+		ps.execute();
 		conn.close();
-		return result;
 	}
 }
