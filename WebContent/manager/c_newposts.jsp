@@ -30,8 +30,8 @@
   }
   int count = 0;
 %>
-<section id="newNav" class="margin-top-32 shadow-box">
-  <h2 class="prefix-block">最新文章</h2>
+<section id="newNav" class="margin-top-32 white-box">
+  <h3 class="prefix-block">最新文章</h3>
   <hr>
 <% for (PostInfo info : post_list) { %>
   <section class="margin-left-16 margin-bottom-8">

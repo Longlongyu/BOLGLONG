@@ -42,9 +42,9 @@
   PageCut page_cut = new PageCut(post_list, curr_page, 15);
   List<PostInfo> curr_page_posts = page_cut.getCurrPageList();
 %>
-<section>
+<section class="white-box">
 <% for (PostInfo info : curr_page_posts) { %>
-<article class="post">
+<article class="manger-post">
   <h2 class="title">
     <a href="/post-edit?id=<%=info.getId()%>"><%=info.getTitle()%></a>
   </h2>
@@ -57,6 +57,10 @@
     <span> - </span>
     <span class="comm">
       <span class="fa fa-comment-o"></span> <%=comm.getCommentNum(info.getId()) %>
+    </span>
+    <span> - </span>
+    <span class="pcount">
+      <span class="fa fa-user-o"></span> <%=info.getCount()%>
     </span>
   </section>
   <section class="inline-block width-48 text-align-right">

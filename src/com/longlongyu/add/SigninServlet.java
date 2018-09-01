@@ -29,6 +29,7 @@ public class SigninServlet extends HttpServlet {
   final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
 
 	User user = new User();
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */

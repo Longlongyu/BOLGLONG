@@ -39,14 +39,8 @@
   <div id="wrapper">
     <div class="overlay"></div>
     <jsp:include page="/manager/c_rightside.jsp" flush="true" />
-    <div id="page-content-wrapper">
-      <button type="button"
-        class="hamburger is-closed animated fadeInLeft"
-        data-toggle="offcanvas">
-        <span class="hamb-top"></span> <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
-      </button>
-      
+    <jsp:include page="/manager/c_nav.jsp" flush="true" />
+    <div id="page-content-wrapper" class="animated zoomInLeft">
       <section id="edit-area">
         <form id="post-edit" name="post-edit" method="post" action="/EditServlet" onsubmit="return false;">
           <div class="margin-left-128">
@@ -77,10 +71,12 @@
               data-content="">存储</a>
         </form>
         <output id="postEditOutPut" style="display:none;"></output>
+        <jsp:include page="/manager/b_footer.jsp" flush="true" />
       </section>
+      
     </div>
   </div>
-
+  
 
 <jsp:include page="/manager/script.jsp" flush="true" />
 <script src="/source/editormd/lib/prettify.min.js"></script>

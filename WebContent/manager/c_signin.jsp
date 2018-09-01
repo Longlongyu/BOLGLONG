@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<section id="signin-panel">
+<section id="sign-panel" class="animated bounceIn delay-2s">
   <h2>欢迎注册</h2>
   <fieldset>
     <form id="signin" action="/SigninServlet" onsubmit="return false;" method="post">
       <div class="">
         <input type="text" name="name" placeholder="用户名">
       </div>
-      <small> 用户名必须以字母开头，且为6-20个字母、数字和下划线的组合</small>
-      <div class="margin-top-16">
+      <small> 用户名必须为6-20个字母、数字、汉字和下划线的组合</small>
+      <div>
         <input type="password" name="password" placeholder="输入密码">
       </div>
       <small> 密码必须为6-20个字母和数字和组合</small>
-      <div class="margin-top-16">
+      <div>
         <input type="text" name="email" placeholder="输入邮箱">
       </div>
-      <button id="signinSubmitButton" type="submit" class="btn btn-default margin-top-32">注册</button>
+      <jsp:include page="/manager/c_slidebox.jsp" flush="true" />
+      <button id="signinSubmitButton" type="submit" class="btn btn-default margin-top-32" disabled="disabled">注册</button>
       <small id="myDiv2" style="color: red;"></small>
       <div class="margin-top-32">
         <span> 点击注册即同意<a href="">BolgLong用户服务条款</a></span>

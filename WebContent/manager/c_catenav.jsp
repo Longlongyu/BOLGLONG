@@ -15,9 +15,12 @@
   	catelist = cate.getCates();
   }
 %>
-<section id="cateNav" class="shadow-box">
-  <h2 class="prefix-block">分类</h2>
+<section id="cateNav" class="margin-top-32 white-box">
+  <h3 class="prefix-block">分类</h3>
   <hr>
+  <section class="margin-bottom-8 margin-left-32">
+    <a href="/"><span class="fa fa-folder-o"></span> 全部 </a>
+  </section>
   <% 
     for (CateInfo cateinfo : catelist) { 
    	  String name = "";
@@ -43,12 +46,12 @@
 
       url += "cate=" + cateinfo.getCateId();
   %>
-    <section class="margin-bottom-16 
+    <section class="margin-bottom-8 
       <% if (request.getParameter("cate") != null 
         && Integer.parseInt(request.getParameter("cate")) == cateinfo.getCateId()) {%>
-        font-size-150 margin-left-32
+        font-size-150 margin-left-16
       <% } else { %>
-        margin-left-64
+        margin-left-32
       <% } %>
       ">
       <a href="<%=url%>"><span class="fa fa-folder-o"></span> <%=cateinfo.getCateName()%> <span class="badge"><%=num %></span></a>

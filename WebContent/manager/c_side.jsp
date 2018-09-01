@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<section id="sideNav" class="shadow-box">
+<section id="sideNav" class="white-box">
   <a class="side-button">
     <span class="fa fa-thumbs-o-up fa-2x"></span>
   </a>

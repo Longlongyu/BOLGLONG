@@ -51,7 +51,7 @@
   </ul>
 </nav>
 <button type="button"
-  class="hamburger is-closed animated fadeInLeft"
+  class="hamburger is-closed animated pulse"
   data-toggle="offcanvas">
   <span class="hamb-top"></span> <span class="hamb-middle"></span>
   <span class="hamb-bottom"></span>

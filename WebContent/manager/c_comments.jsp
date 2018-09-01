@@ -8,7 +8,7 @@
   Post post = new Post();
   Comment comm = new Comment();
 %>
-<section class="shadow-box margin-top-64">
+<section class="white-box margin-top-64">
   <%
     int p_id = Integer.parseInt(request.getParameter("p_id"));
     List<CommentInfo> commentlist = comm.getCommentByPost(p_id);

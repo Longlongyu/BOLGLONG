@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<section id="login-panel">
+<section id="login-panel" class="animated fadeInRight delay-2s">
   <h2>欢迎登录</h2>
   <fieldset>
     <form  id="login" action="/LoginServlet" onsubmit="return false;" method="post">
@@ -13,7 +13,15 @@
     </form>
     <div id="myDiv" style="display:none;"></div>
   </fieldset>
-  <div class="margin-top-32">
+  <div class="text-align-left margin-top-16">
+    <span>其他登录方式: </span>
+    <span class="fa fa-weixin"></span>
+    <span class="fa fa-github"></span>
+    <span class="fa fa-facebook"></span>
+    <span class="fa fa-twitter"></span>
+    <span class="fa fa-qq"></span>
+  </div>
+  <div class="margin-top-16">
     <span>已有账号？<a href="/signin">我要注册</a></span>
   </div>
 </section>

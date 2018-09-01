@@ -15,20 +15,11 @@
     <div class="overlay"></div>
     <jsp:include page="/manager/c_rightside.jsp" flush="true" />
     <div id="page-content-wrapper">
-      <button type="button"
-        class="hamburger is-closed animated fadeInLeft"
-        data-toggle="offcanvas">
-        <span class="hamb-top"></span> <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
-      </button>
-      
-      <section id="sign-page" class="container-fluid">
-        <h1 class="page-header">Blog Long <small>Sign in Page</small></h1>
+      <jsp:include page="/manager/c_nav.jsp" flush="true" />
+      <section id="sign-page">
         <%@ include file="c_signin.jsp"%>
-        <h4>© Longlongyu • 2018 • <a href="mailto:longlongyuu@gmail.com">longlongyuu@gmail.com</a></h4>
-        <p>The site by <a href="https://github.com/Longlongyu/BOLGLONG">bloglong</a></p>
+        <jsp:include page="/manager/script.jsp" flush="true" />
       </section>
-      <%@ include file="script.jsp"%>
     </div>
   </div>
   

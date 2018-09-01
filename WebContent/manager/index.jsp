@@ -9,24 +9,21 @@
   <div id="wrapper">
     <div class="overlay"></div>
     <jsp:include page="c_rightside.jsp" flush="true" />
-    <div id="page-content-wrapper">
-      <jsp:include page="c_nav.jsp" flush="true" />
+    <jsp:include page="c_nav.jsp" flush="true" />
+    <div id="page-content-wrapper" class="animated slideInUp">
       <section class="container margin-top-64">
         <section class="row">
-          <div class="col-xs-12 col-sm-6 col-md-8">
-            <jsp:include page="c_posts.jsp" flush="true" />
+          <div id="posts-box" class="col-xs-8 col-md-9">
           </div>
-          <div class="col-xs-6 col-md-3">
+          <div class="col-xs-4 col-md-3">
             <jsp:include page="c_catenav.jsp" flush="true" />
             <jsp:include page="c_newposts.jsp" flush="true" />
-          </div>
-          <div class="col-xs-1">
-            <jsp:include page="c_side.jsp" flush="true" />
           </div>
         </section>
       </section>
       <jsp:include page="b_footer.jsp" flush="true" />
       <jsp:include page="script.jsp" flush="true" />
+      <jsp:include page="b_post.jsp" flush="true" />
     </div>
   </div>
 </body>

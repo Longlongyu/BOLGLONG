@@ -15,20 +15,17 @@
     <div class="overlay"></div>
     <jsp:include page="/manager/c_rightside.jsp" flush="true" />
     <div id="page-content-wrapper">
-      <button type="button"
-        class="hamburger is-closed animated fadeInLeft"
-        data-toggle="offcanvas">
-        <span class="hamb-top"></span> <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
-      </button>
-      
-      <section id="sign-page" class="container-fluid">
-        <h1 class="page-header">Blog Long <small>Log in Page</small></h1>
+      <jsp:include page="/manager/c_nav.jsp" flush="true" />
+      <section id="login-page">
+        <section class="login-title animated zoomInLeft">
+          <h2>博客龙数字化转型专家</h2>
+          <p class="animated fadeInLeft delay-3s">融合AI突破性技术，解决社会和商业棘手问题</p>
+          <p class="animated fadeInRight delay-6s">提供ET大脑帮助您在复杂局面下，做出最优决策</p>
+          <p class="animated fadeInLeft delay-9s">现已广泛应用于工业、城市、医疗、交通等多个行业</p>
+        </section>
         <%@ include file="c_login.jsp"%>
-        <h4>© Longlongyu • 2018 • <a href="mailto:longlongyuu@gmail.com">longlongyuu@gmail.com</a></h4>
-        <p>The site by <a href="https://github.com/Longlongyu/BOLGLONG">bloglong</a></p>
+        <jsp:include page="/manager/script.jsp" flush="true" />
       </section>
-      <%@ include file="script.jsp"%>
     </div>
   </div>
   

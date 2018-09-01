@@ -40,23 +40,12 @@
   <div id="wrapper">
     <div class="overlay"></div>
     <jsp:include page="/manager/c_rightside.jsp" flush="true" />
-    <div id="page-content-wrapper">
-      <button type="button"
-        class="hamburger is-closed animated fadeInLeft"
-        data-toggle="offcanvas">
-        <span class="hamb-top"></span> <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
-      </button>
-      
-      <jsp:include page="/manager/c_nav.jsp" flush="true" />
-      <section class="container-fluid">
+    <jsp:include page="/manager/c_nav.jsp" flush="true" />
+    <div id="page-content-wrapper" class="animated slideInUp">
+      <section class="container margin-top-64">
         <section class="row">
-          <div class="col-xs-6 col-md-3">
-            <jsp:include page="/manager/c_catenav.jsp" flush="true" />
-            <jsp:include page="/manager/c_newposts.jsp" flush="true" />
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-8">
-            <section class="shadow-box">
+          <div class="col-xs-8 col-md-9">
+            <section class="white-box">
               <h1><%=post_info.getTitle()%></h1>
               <p>创作时间：<%=post_info.getTime()%></p>
               <p>作者：<%=user.getUserName(post_info.getAuthorId())%></p>
@@ -66,8 +55,10 @@
             </section>
             <jsp:include page="/manager/c_comm.jsp" flush="true" />
           </div>
-          <div class="col-xs-1">
-            <jsp:include page="/manager/c_side.jsp" flush="true" />
+          <div class="col-xs-4 col-md-3">
+            <jsp:include page="/manager/c_toc.jsp" flush="true" />
+            <jsp:include page="/manager/c_catenav.jsp" flush="true" />
+            <jsp:include page="/manager/c_newposts.jsp" flush="true" />
           </div>
         </section>
       </section>
@@ -88,11 +79,10 @@
       	var pid = <%=pid%>;//获取文档ID
         $.ajax({
           type : "POST",
-          url : "/manager/c_count.jsp?p_id=" + pid,
+          url : "/manager/f_count.jsp?p_id=" + pid,
           data : {},
           dataType: "json",
           success : function(data) {
-          	console.log(data);
       	  	$('#pcount').text('访问量：' + data.count); //设置文档的访问量
           },
         });

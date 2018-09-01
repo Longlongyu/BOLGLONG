@@ -118,7 +118,26 @@ public class Post {
 		conn.close();
 		return list;
 	}
-
+	
+	
+	/**
+	 * 获得某分类下的所有博文数量
+	 * 
+	 * @param post number
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getPostNum() throws SQLException {
+		int result = 0;
+		String sql = "select count(p_id) result from post";
+		ResultSet rs = conn.executeQuery(sql);
+		while (rs.next()) {
+			result = rs.getInt("result");
+		}
+		conn.close();
+		return result;
+	}
+	
 	/**
 	 * 获得某分类下的所有博文数量
 	 * 
