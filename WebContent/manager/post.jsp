@@ -37,6 +37,7 @@
   <jsp:include page="/manager/b_head.jsp" flush="true" />
 </head>
 <body>
+  <jsp:include page="/manager/c_side.jsp" flush="true" />
   <div id="wrapper">
     <div class="overlay"></div>
     <jsp:include page="/manager/c_rightside.jsp" flush="true" />

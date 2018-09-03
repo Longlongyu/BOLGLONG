@@ -25,10 +25,11 @@
           article.append(split);
           article.append('<span class="comm"><span class="fa fa-comment-o"></span> ' + value.commentNum + '</span>');
           article.append(split);
-          article.append('<span class="pcount"><span class="fa fa-user-o"></span> ' + value.count + '</span>');
+          article.append('<span class="pcount"><span class="fa fa-eye"></span> ' + value.count + '</span>');
           article.append('<article class="post-article margin-top-16">' + value.content + '</article>');
           var b_url = 'post/' + value.authorName + '?p_id=' + value.pid + '#more';
           article.append('<p class="post-readbtn margin-top-32"><a href="' + b_url + ' class="more">Read More</a></p>');
+          article.append('<hr>');
       	});
       	{
       	  var nv = data.nav;

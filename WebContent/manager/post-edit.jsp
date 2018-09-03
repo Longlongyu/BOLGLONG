@@ -9,6 +9,9 @@
   Cate cate = new Cate();
 %>
 <%
+  if (session.getAttribute("username") == null) {
+    response.sendRedirect("/login"); 
+  }
   List<CateInfo> catelist = new ArrayList<>();
   
   request.setCharacterEncoding("utf-8"); 

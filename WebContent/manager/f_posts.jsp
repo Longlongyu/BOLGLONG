@@ -31,7 +31,7 @@
   	sql += " where u_id=" + user.getUserId(name);
   }
   
-  if (request.getParameter("req").equals("all")) {
+  if (request.getParameter("req") != null && request.getParameter("req").equals("all")) {
   	sql = "select * from post";
   }
   

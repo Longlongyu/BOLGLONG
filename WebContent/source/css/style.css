@@ -729,8 +729,13 @@ form.navbar-form {
 
 #sideNav {
   width: 5rem;
-  top: 62px;
+  visibility: hidden;
+  z-index: 1;
+  position: fixed;
+  right: 5rem;
+  bottom: 10rem;
   padding: 0;
+  border-radius: 50%;
 }
 
 #sideNav .side-button {
@@ -738,7 +743,6 @@ form.navbar-form {
   text-align: center;
   width: 100%;
   padding: 1.2rem 0;
-  border-bottom: 1px solid #ccc;
 }
 
 #sideNav .side-button:hover span {
@@ -794,4 +798,173 @@ form.navbar-form {
 
 #manger-post {
   min-height: 60vh;
+}
+
+.almanac-container {
+  margin: 0 auto 0;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.almanac-container>.almanac-title {
+  color: #bbb;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background: #555;
+  padding: 5px 15px;
+}
+
+.almanac-adlink {
+  text-align: center;
+  font-size: 11pt;
+}
+
+.almanac-adlink a {
+  text-decoration: none;
+  display: block;
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background: #eee;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10pt;
+  margin-top: 10pt;
+}
+
+.almanac-date {
+  font-weight: bold;
+  line-height: 20pt;
+  text-align: center;
+}
+
+.salmanac-plit, .almanac-clear {
+  clear: both;
+  height: 1px;
+  overflow-y: hidden;
+}
+
+.almanac-good, .almanac-bad {
+  clear: both;
+  position: relative;
+}
+
+.almanac-bad {
+  /*top: -1px;*/
+  
+}
+
+.almanac-good .almanac-title, .almanac-bad .almanac-title {
+  float: left;
+  width: 35%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 30pt;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.almanac-good .almanac-title>table, .almanac-bad .almanac-title>table {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.almanac-good .almanac-title {
+  background: #ffee44;
+}
+
+.almanac-someday .almanac-good .almanac-title {
+  background: #aaaaaa;
+}
+
+.almanac-bad .almanac-title {
+  background: #ff4444;
+  color: #fff;
+}
+
+.almanac-someday .almanac-bad .almanac-title {
+  background: #666666;
+  color: #fff;
+}
+
+.almanac-good .almanac-content, .almanac-bad .almanac-content {
+  margin-left: 40%;
+  padding-right: 10px;
+  padding-top: 1px;
+  font-size: 15pt;
+}
+
+.almanac-someday .almanac-good {
+  background: #dddddd;
+}
+
+.almanac-someday .almanac-bad {
+  background: #aaaaaa;
+}
+
+.almanac-good {
+  background: #ffffaa;
+}
+
+.almanac-bad {
+  background: #ffddd3;
+}
+
+.almanac-content ul {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.almanac-content ul li {
+  line-height: 150%;
+  font-size: 15pt;
+  font-weight: bold;
+  color: #444;
+}
+
+.almanac-content ul li div.almanac-description {
+  font-size: 11pt;
+  font-weight: normal;
+  color: #777;
+  line-height: 110%;
+  margin-bottom: 10px;
+}
+
+.almanac-line-tip {
+  font-size: 11pt;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.almanac-direction_value {
+  color: #4a4;
+  font-weight: bold;
+}
+
+.almanac-someday .almanac-direction_value {
+  color: #888;
+}
+
+.almanac-goddes_value {
+  color: #f87;
+}
+
+.almanac-someday .almanac-goddes_value {
+  color: #777;
+}
+
+.almanac-comment {
+  margin-top: 50px;
+  font-size: 11pt;
+  margin-left: 10px;
+}
+
+.almanac-comment ul {
+  margin-left: 0;
+  padding-left: 20px;
+  color: #999;
 }

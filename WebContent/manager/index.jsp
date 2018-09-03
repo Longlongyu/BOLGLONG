@@ -16,6 +16,7 @@
           <div id="posts-box" class="col-xs-8 col-md-9">
           </div>
           <div class="col-xs-4 col-md-3">
+            <jsp:include page="c_showtime.jsp" flush="true" />
             <jsp:include page="c_catenav.jsp" flush="true" />
             <jsp:include page="c_newposts.jsp" flush="true" />
           </div>
@@ -26,5 +27,6 @@
       <jsp:include page="b_post.jsp" flush="true" />
     </div>
   </div>
+  <jsp:include page="c_side.jsp" flush="true" />
 </body>
 </html>

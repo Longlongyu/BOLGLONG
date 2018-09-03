@@ -22,9 +22,9 @@ public class SigninServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	// 正则表达式：验证用户名
-  final String REGEX_USERNAME = "^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9_\u4e00-\u9fa5]{6,20}$";
+  final String REGEX_USERNAME = "^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9_\u4e00-\u9fa5]{4,20}$";
   //正则表达式：验证密码
-  final String REGEX_PASSWORD = "^[a-zA-Z0-9]{6,20}$";
+  final String REGEX_PASSWORD = "^[a-zA-Z0-9*_+-]{6,20}$";
   //正则表达式：验证邮箱
   final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
 

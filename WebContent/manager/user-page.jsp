@@ -33,6 +33,7 @@
           <div id="posts-box" class="col-xs-8 col-md-9">
           </div>
           <div class="col-xs-4 col-md-3">
+            <jsp:include page="/manager/c_showtime.jsp" flush="true" />
             <jsp:include page="/manager/c_catenav.jsp" flush="true" />
             <jsp:include page="/manager/c_newposts.jsp" flush="true" />
           </div>

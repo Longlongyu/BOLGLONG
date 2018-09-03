@@ -66,7 +66,7 @@ public class Conn {
 	public int executeUpdate(String sql){
 		int result=0;
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog?serverTimezone=UTC",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog?serverTimezone=Hongkong",
 			    "root", "123456");
 			stmt=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			result=stmt.executeUpdate(sql);
