@@ -50,8 +50,10 @@ public class LoginServlet extends HttpServlet {
       	user.updateTime(name);// 更新登陆时间
       	request.getSession().setAttribute("username", name);// Session记录对应用户
         out.print("<script>location.reload();</script>");
+	    } else if (name.isEmpty() || password.isEmpty()) {
+	      out.print("用户名或密码不能为空！");
 	    } else {
-	      out.print("你输入的用户名或者密码错误！请重新输入！");
+	    	out.print("用户名或密码输入错误！请重新输入！");
 	    }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

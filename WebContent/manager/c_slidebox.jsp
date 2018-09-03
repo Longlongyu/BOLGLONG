@@ -55,7 +55,7 @@
                 } else {
                     objX = slideBoxWidth;
                     locked = true;
-                    $('#signinSubmitButton').removeAttr('disabled');
+                    $('#signinSubmitButton,#loginSubmitButton').removeAttr('disabled');
                     $('#slide_xbox').html('<span class="relative-left-40">验证通过<span><div id="btn"><i class="iconfont icon-xuanzhong" style="color: #35b34a;"></i></div>');
                 }
                 $('#slide_xbox').width(objX + 'px');

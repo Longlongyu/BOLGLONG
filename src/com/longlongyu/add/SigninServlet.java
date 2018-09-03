@@ -66,15 +66,15 @@ public class SigninServlet extends HttpServlet {
 			} else {
 				int count = 0;
 		    if (!Pattern.matches(REGEX_USERNAME, name)) {
-		    	out.println("用户名不符合要求！");
+		    	out.println("用户名");
 		    	count++;
 		    }
 		    if (!Pattern.matches(REGEX_PASSWORD, password)) {
-		    	out.println("密码不符合要求！");
+		    	out.println(" 密码");
 		    	count++;
 		    }
 		    if (!Pattern.matches(REGEX_EMAIL, email)) {   // 判断输入合法性
-		      out.println("邮箱不符合要求！");
+		      out.println(" 邮箱");
 		      count++;
 		    }
 		    if (count == 0) {
@@ -90,7 +90,7 @@ public class SigninServlet extends HttpServlet {
 	      	request.getSession().setAttribute("username", name);// Session记录对应用户
 	        out.print("<script>setTimeout('location.reload();', 1000)</script>");
 		    } else {
-		    	out.println("请重新输入！");
+		    	out.println("不符合要求！请重新输入！");
 		    }
 			}
 		} catch (SQLException e) {

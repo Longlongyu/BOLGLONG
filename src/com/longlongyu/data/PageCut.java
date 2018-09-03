@@ -69,6 +69,7 @@ public class PageCut {
 	}
 	
 	public List<PostInfo> getCurrPageList() {
+		if (getTotalNumber() <= pageSize) return dataList;
 		int n = currPageNum * pageSize;
 		int num = n < getTotalNumber() ? n : getTotalNumber();
 		List<PostInfo> result = dataList.subList((currPageNum - 1) * pageSize, num);
