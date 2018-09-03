@@ -11,13 +11,7 @@ var $_main = (function() {
   	}
   	return result;
   }
-  function getFirstUpperCase(str) {
-  	return str.substring(0, 1).toUpperCase();
-  }
-  function getNewFoolr() {
-  	var result = document.querySelector(".comment");
-  	return result == null ? 1 : parseInt(result.getAttribute("date-floor"));
-  }
+  
   function getCurrTime() {
   	var date = new Date();
     var seperator1 = "-";

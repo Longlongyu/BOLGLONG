@@ -9,21 +9,22 @@
       <div class="margin-top-16">
         <input type="password" name="password" placeholder="输入密码">
       </div>
-      <button id="loginSubmitButton" type="submit" class="btn btn-default margin-top-32">登录</button>
+      <jsp:include page="/manager/c_slidebox.jsp" flush="true" />
+      <small id="myDiv" style="color: red;"></small>
+      <button id="loginSubmitButton" type="submit" disabled="disabled" class="btn btn-default margin-top-32">登录</button>
     </form>
-    <div id="myDiv" style="display:none;"></div>
   </fieldset>
-  <div class="text-align-left margin-top-16">
+  <div class="margin-top-16">
+    <span>已有账号？<a href="/signin">我要注册</a></span>
+  </div>
+  <!-- <div class="text-align-left margin-top-16">
     <span>其他登录方式: </span>
     <span class="fa fa-weixin"></span>
     <span class="fa fa-github"></span>
     <span class="fa fa-facebook"></span>
     <span class="fa fa-twitter"></span>
     <span class="fa fa-qq"></span>
-  </div>
-  <div class="margin-top-16">
-    <span>已有账号？<a href="/signin">我要注册</a></span>
-  </div>
+  </div> -->
 </section>
   
 <script type="text/javascript">

@@ -19,17 +19,17 @@
   <h3 class="prefix-block">分类</h3>
   <hr>
   <section class="margin-bottom-8 margin-left-32">
-    <a href="/"><span class="fa fa-folder-o"></span> 全部 </a>
+    <a href="/"><span class="fa fa-folder-o"></span> 全部 <span class="badge"><%=post.getPostNum()%></span></a>
   </section>
   <% 
     for (CateInfo cateinfo : catelist) { 
    	  String name = "";
       int num = 0;
-      String url = "?";
+      String url = "?req=all&";
 
       if (request.getParameter("username") != null) {
         name = request.getParameter("username"); // 获得用户名
-        url = "user-page?username=" + name + "&";
+        url = "user-page?username=" + name + "&req=all&";
       } else if (request.getServletPath().equals("/post")) {
         name = request.getRequestURI().substring(6, request.getRequestURI().length());
       } else if (request.getServletPath().equals("/add")) {

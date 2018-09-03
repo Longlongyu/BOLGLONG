@@ -17,15 +17,7 @@
     <div id="page-content-wrapper">
       <jsp:include page="/manager/c_nav.jsp" flush="true" />
       <section class="container margin-top-64">
-        <section class="row">
-          <div class="col-xs-8 col-md-9">
-            <jsp:include page="/manager/c_mangerposts.jsp" flush="true" />
-          </div>
-          <div class="col-xs-4 col-md-3">
-            <jsp:include page="/manager/c_catenav.jsp" flush="true" />
-            <jsp:include page="/manager/c_newposts.jsp" flush="true" />
-          </div>
-        </section>
+        <jsp:include page="/manager/b_table.jsp" flush="true" />
       </section>
       <jsp:include page="/manager/b_footer.jsp" flush="true" />
       <jsp:include page="/manager/script.jsp" flush="true" />

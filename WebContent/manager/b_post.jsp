@@ -1,9 +1,9 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <script>
   $(document).ready(function(){
     $.ajax({
       type : "POST",
-      url : "/manager/f_posts.jsp?<%=request.getQueryString()%>",
+      url : "/manager/f_posts.jsp?<%=request.getQueryString()%>&req=all",
       data : {},
       dataType: "json",
       success : function(data) {

@@ -17,13 +17,13 @@
     try {
       conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog?serverTimezone=Hongkong",
 			    "root", "123456");
-      pstmt = conn.prepareStatement("Select count from post where p_id=?");
+      pstmt = conn.prepareStatement("Select pcount from post where p_id=?");
       pstmt.setString(1,pid);;
       rs = pstmt.executeQuery();
       String sql = "";
       if(rs.next()) {
-        count = ""+(rs.getInt("count")+1);
-        sql = "update post set count=count+1 where p_id=?";
+        count = ""+(rs.getInt("pcount")+1);
+        sql = "update post set pcount=pcount+1 where p_id=?";
         pstmt1 = conn.prepareStatement(sql);
     	pstmt1.setString(1,pid);
     	pstmt1.executeUpdate();

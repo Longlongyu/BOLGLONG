@@ -40,7 +40,7 @@
     <div class="overlay"></div>
     <jsp:include page="/manager/c_rightside.jsp" flush="true" />
     <jsp:include page="/manager/c_nav.jsp" flush="true" />
-    <div id="page-content-wrapper" class="animated zoomInLeft">
+    <div id="page-content-wrapper">
       <section id="edit-area">
         <form id="post-edit" name="post-edit" method="post" action="/EditServlet" onsubmit="return false;">
           <div class="margin-left-128">
@@ -66,6 +66,7 @@
           <input type="hidden" name="username" value="<%=username%>" />
           <input type="hidden" name="cate" value="<%=hide_cate%>" id="catevlue"/>
           <a href="/" class="btn btn-default margin-left-128" >返回首页</a>
+          <a href="/add" class="btn btn-default margin-left-32" >返回管理页</a>
           <a id="submitPostEditButton" tabindex="0" class="btn btn-danger margin-left-32" 
               role="button" data-toggle="popover" data-trigger="focus"
               data-content="">存储</a>
@@ -103,7 +104,7 @@
   	  } else if (text == "error") {
   	  	document.getElementById("submitPostEditButton").setAttribute("data-content", "存储失败!");
   	  }
-  	  $('#submitPostEditButton').popover('show')
+  	  $('#submitPostEditButton').popover('show');
   	});
   });
   $(function() {

@@ -38,7 +38,7 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
-			info.setCount(rs.getInt("count"));
+			info.setCount(rs.getInt("pcount"));
 			list.add(info);
 		}
 		conn.close();
@@ -75,7 +75,7 @@ public class Post {
 	 */
 	public List<PostInfo> getListByTag(String tag) throws SQLException {
 		List<PostInfo> list = new ArrayList<PostInfo>();
-		String sql = "select post.p_id,u_id,title,content,createdate,cate,count from post,tag where post.p_id=tag.p_id order by createdate desc";
+		String sql = "select post.p_id,u_id,title,content,createdate,cate,pcount from post,tag where post.p_id=tag.p_id order by createdate desc";
 		ResultSet rs = conn.executeQuery(sql);
 		while (rs.next()) {
 			PostInfo info = new PostInfo();
@@ -85,7 +85,7 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
-			info.setCount(rs.getInt("count"));
+			info.setCount(rs.getInt("pcount"));
 			list.add(info);
 		}
 		conn.close();
@@ -112,7 +112,7 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
-			info.setCount(rs.getInt("count"));
+			info.setCount(rs.getInt("pcount"));
 			list.add(info);
 		}
 		conn.close();
@@ -175,7 +175,7 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
-			info.setCount(rs.getInt("count"));
+			info.setCount(rs.getInt("pcount"));
 			list.add(info);
 		}
 		conn.close();
@@ -201,7 +201,7 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
-			info.setCount(rs.getInt("count"));
+			info.setCount(rs.getInt("pcount"));
 			list.add(info);
 		}
 		conn.close();
@@ -264,7 +264,7 @@ public class Post {
 			info.setContent(rs.getString("content"));
 			info.setCreatedate(rs.getTimestamp("createdate"));
 			info.setCate(rs.getInt("cate"));
-			info.setCount(rs.getInt("count"));
+			info.setCount(rs.getInt("pcount"));
 		}
 		conn.close();
 		return info;
@@ -330,7 +330,7 @@ public class Post {
 	 * @return
 	 */
 	public void update(PostInfo info) throws SQLException {
-		String sql = "iupdate post set title=?,content=?,cate=? where p_id=?";
+		String sql = "update post set title=?,content=?,cate=? where p_id=?";
 		PreparedStatement ps = conn.usePreparedStatement(sql);
 		ps.setString(1, info.getTitle());
 		ps.setString(2, info.getContent());
