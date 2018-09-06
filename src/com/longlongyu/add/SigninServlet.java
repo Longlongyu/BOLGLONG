@@ -84,7 +84,7 @@ public class SigninServlet extends HttpServlet {
 	  			info.setEmail(email);
 	  			user.insert(info);                             // 插入数据
 	  			
-	  			out.print("注册成功！即将自动登陆！");
+	  			out.print("success");
 	  			
 	  			user.updateTime(name);                              // 自动登陆
 	      	request.getSession().setAttribute("username", name);// Session记录对应用户

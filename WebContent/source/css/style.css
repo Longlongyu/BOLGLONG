@@ -968,3 +968,23 @@ form.navbar-form {
   padding-left: 20px;
   color: #999;
 }
+
+#box-404 {
+  text-align: center;
+  padding: 15rem 0;
+}
+#box-404 .big-font {
+  font-size: 800%;
+}
+#box-404 .box-404-btn {
+  padding: .7rem 1.5rem;
+  border: 1px solid #000;
+  display: inline-block;
+  border-radius: 5px;
+  color: #000;
+  text-decoration: none;
+  transtion: all .5s;
+}
+#box-404 .box-404-btn:hover {
+  transform: scale(1.1);
+}

@@ -9,6 +9,10 @@
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
+  <error-page> 
+    <error-code>400</error-code> 
+    <location>/manager/404.jsp</location> 
+  </error-page>
   <servlet>
     <servlet-name>add</servlet-name>
     <jsp-file>/manager/manager.jsp</jsp-file>

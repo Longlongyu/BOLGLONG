@@ -3,10 +3,10 @@
   <h2>欢迎注册</h2>
   <fieldset>
     <form id="signin" action="/SigninServlet" onsubmit="return false;" method="post">
-      <div class="">
-        <input type="text" name="name" placeholder="用户名">
+      <div>
+        <input type="text" name="name" placeholder="用户名" >
       </div>
-      <small> 用户名必须为6-20个字母、数字、汉字和下划线的组合</small>
+      <small> 用户名必须为5-20个字母、数字、汉字和下划线的组合</small>
       <div>
         <input type="password" name="password" placeholder="输入密码">
       </div>
@@ -27,7 +27,41 @@
   </div>
 </section>
 <script type="text/javascript">
-  document.getElementById("signinSubmitButton").addEventListener('click', function (){
-    $_ajax.submitForm("signin", "myDiv2");
+  $(function () {
+  	$('[name="name"][type="text"]').blur(function(){
+  	  if (!$(this).val()) return;
+  	  $(this).popover('destroy');
+  	  $.ajax({
+        type : 'POST',
+        url : '/Proof?name='+$(this).val(),
+        success : function(text) {
+          $('[name="name"][type="text"]').popover({
+            html: true,
+        	trigger: 'manual',
+        	placement: 'auto right',
+        	content: text=='right'?'<i class="fa fa-check" style="color: #20c997;"></i>':text});
+          $('[name="name"][type="text"]').popover('show');
+          setTimeout(function(){
+          	$('[name="name"][type="text"]').popover('hide');
+          	$('[name="name"][type="text"]').popover('destroy');
+          },1500);
+        },
+        error : function(text) {
+          $('[name="name"][type="text"]').popover({
+            html: true,
+        	trigger: 'manual',
+        	placement: 'auto right',
+        	content: '<i class="fa fa-error" style="color: #ff6b6b;"></i>'});
+          $('[name="name"][type="text"]').popover('show');
+          setTimeout(function(){
+          	$('[name="name"][type="text"]').popover('hide');
+          	$('[name="name"][type="text"]').popover('destroy');
+          },1500);
+        },
+      });
+  	});
+  });
+  document.getElementById('signinSubmitButton').addEventListener('click', function (){
+    $_ajax.submitForm('signin', 'myDiv2');
   });
 </script>
