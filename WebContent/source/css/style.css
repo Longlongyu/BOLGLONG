@@ -469,6 +469,10 @@ form.navbar-form {
 .margin-bottom-16 {
   margin-bottom: 1rem;
 }
+
+.margin-bottom-32 {
+  margin-bottom: 2rem;
+}
 /* height��ʽ */
 .height-100-vh {
   height: 100vh;

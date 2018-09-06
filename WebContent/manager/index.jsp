@@ -14,6 +14,7 @@
       <section class="container margin-top-64">
         <section class="row">
           <div id="posts-box" class="col-xs-8 col-md-9">
+            <jsp:include page="c_banner.jsp" flush="true" />
           </div>
           <div class="col-xs-4 col-md-3">
             <jsp:include page="c_showtime.jsp" flush="true" />
