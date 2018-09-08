@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="com.longlongyu.dal.*"%>
+<%@ page import="com.longlongyu.add.*"%>
+<%@ page import="com.longlongyu.Info.*"%>
+<%@ page import="com.longlongyu.data.*"%>
+<%! 
+  User user = new User();
+%>
 <section id="manger-post">
-  <h1><%=session.getAttribute("username") %>的博客管理页</h1>
+  <%if (user.getPower((String)session.getAttribute("username")) == 1) { %>
+    <h1><%=session.getAttribute("username") %>的博客管理页</h1>
+  <% } else { %>
+    <h1>管理员 <%=session.getAttribute("username") %> , 欢迎您！</h1>
+  <% } %>
   <div id="alert" class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
   </div>
   <table id="post-table"></table>

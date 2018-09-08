@@ -354,4 +354,18 @@ public class Post {
 		ps.execute();
 		conn.close();
 	}
+	
+	/**
+	 * ²©ÎÄÉ¾³ý
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public void delete(int id) throws SQLException {
+		String sql = "delete from post where p_id=?";
+		PreparedStatement ps = conn.usePreparedStatement(sql);
+		ps.setInt(1, id);
+		ps.execute();
+		conn.close();
+	}
 }

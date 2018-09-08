@@ -46,9 +46,8 @@
           if (request.getParameter("p_id") != null && user.getPower(username) == 0) {
         %>
           <form id="commDelete" action="/CommDeleteServlet" onsubmit="return false;" method="post">
-            <a class="navbar-link margin-right-32">删除</a>
+            <a id="commDeleteSubmit" class="navbar-link margin-right-32">删除</a>
             <input type="hidden" name="c_id" value="<%=cinfo.getId()%>" />
-            <input type="hidden" name="p_id" value="<%=p_id%>" />
           </form>
         <% } %>
       </div>
@@ -57,3 +56,19 @@
   <% } %>
   </section>
 </section>
+<script>
+document.getElementById("commDeleteSubmit").addEventListener('click', function (){
+	$.ajax({
+	  type : "POST",
+	  url : '/DeleteCommentServlet?c_id=' + $('[name="c_id"]').val(),
+	  success : function(data) {
+	  	if (data == 'success') {
+	  		window.location.reload();
+	  	} else {
+	  		alert('删除失败');
+	  	}
+	  },
+	});
+});
+
+</script>

@@ -9,7 +9,7 @@
       success : function(data) {
       	var posts = $("<section class='white-box'></section>").appendTo($("#posts-box"));
       	var nav = $("<section id='page-nav' class='margin-top-32'></section>").appendTo($("#posts-box"));
-      	$.each(data[0],function(key,value){
+      	$.each(data[0],function(key,value) {
       	  var article = $('<article class="posts"></article>').appendTo(posts);
       	  var title = $('<h2 class="title"></h2>').appendTo(article);
       	  title.append('<a href="post/' + value.authorName + '?p_id=' + value.pid + '">' + value.title + '</a>')

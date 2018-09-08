@@ -346,7 +346,7 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.25);
-  z-index: 3;
+  z-index: 21;
 }
 
 /* ��ʽ���� */
@@ -395,7 +395,7 @@ nav.nav-bd {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 20;
 }
 
 a.navbar-brand {

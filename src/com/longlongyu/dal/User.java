@@ -53,7 +53,7 @@ public class User {
 	}
 	
 	/**
-	 * 判断当前登陆用户是否存在
+	 * 判断当前登陆用户
 	 * 
 	 * @param username
 	 * @param password

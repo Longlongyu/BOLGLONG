@@ -10,7 +10,7 @@
     <div class="overlay"></div>
     <jsp:include page="c_rightside.jsp" flush="true" />
     <jsp:include page="c_nav.jsp" flush="true" />
-    <div id="page-content-wrapper" class="animated slideInUp">
+    <div id="page-content-wrapper">
       <section class="container margin-top-64">
         <section class="row">
           <div id="posts-box" class="col-xs-8 col-md-9">

@@ -10,22 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.longlongyu.dal.Comment;
 import com.longlongyu.dal.Post;
 import com.longlongyu.dal.User;
 
 /**
- * Servlet implementation class DelectServlet
+ * Servlet implementation class DeleteCommentServlet
  */
-@WebServlet("/DeleteServlet")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/DeleteCommentServlet")
+public class DeleteCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+  
 	User user = new User();
 	Post post = new Post();
+	Comment comm = new Comment();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteServlet() {
+    public DeleteCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,18 +48,14 @@ public class DeleteServlet extends HttpServlet {
     request.setCharacterEncoding("utf8");
     PrintWriter out = response.getWriter();
     
-    int id = Integer.parseInt(request.getParameter("id")); // 获取文章id
-    String username = request.getParameter("username");    // 获取文章操作用户
+    int id = Integer.parseInt(request.getParameter("c_id")); // 获取文章id
+    String username = (String) request.getSession().getAttribute("username");    // 获取评论操作用户
+    
     try {
-			if (!user.isExistUsersInfo(username)
-					 || !username.equals((String) request.getSession().getAttribute("username"))) { // 判断用户是否存在
+			if (!user.isExistUsersInfo(username)) { // 判断用户是否存在
 				out.print("user error");
 			} else if (user.getPower(username) == 0) {
-				post.delete(id);
-				out.print("success");
-			} else if (post.getPostInfo(id).getAuthorId() == user.getUserId(username)) {   // 判断用户和作者是否为同一人
-				int u_id = user.getUserId(username);
-				post.delete(id, u_id);
+				comm.delete(id);
 				out.print("success");
 			} else {
 				out.print("failed");
