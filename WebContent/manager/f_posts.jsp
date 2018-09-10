@@ -97,15 +97,16 @@
   	returnjson.put("content", BlogUtil.Substring(info.getContent(), 300));
   	
     
-  	main.put("" + i, returnjson);
+  	main.put("" + i++, returnjson);
   }
-  
-  JSONObject nav = new JSONObject();
-  nav.put("url", url);
-  nav.put("startPageNum", page_cut.getStartPageNum());
-  nav.put("endPageNum", page_cut.getEndPageNum());
-  nav.put("totalPages", page_cut.getTotalPages());
-  main.put("nav", nav);
+  if (request.getParameter("req") != null && !request.getParameter("req").equals("table")) {
+    JSONObject nav = new JSONObject();
+    nav.put("url", url);
+    nav.put("startPageNum", page_cut.getStartPageNum());
+    nav.put("endPageNum", page_cut.getEndPageNum());
+    nav.put("totalPages", page_cut.getTotalPages());
+    main.put("nav", nav);
+  }
   out.clear();
   out.println(main.toString());   //通过json返回，静态页面通过ajax
 %>

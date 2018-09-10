@@ -1,15 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="com.longlongyu.dal.*"%>
+<%@ page import="com.longlongyu.add.*"%>
+<%@ page import="com.longlongyu.Info.*"%>
+<%@ page import="com.longlongyu.data.*"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="net.sf.json.*"%>
+<%! 
+  Conn conn = new Conn();
+  User user = new User();
+  Post post = new Post();
+  Cate cate = new Cate();
+  Comment comm = new Comment();
+%>
+<% 
+  String req = "all";
+  if (request.getParameter("username") != null) {
+    req = "";
+  }
+%>
 <script>
   $(document).ready(function(){
     $.ajax({
       type : "POST",
-      url : "/manager/f_posts.jsp?<%=request.getQueryString()%>&req=all",
+      url : "/manager/f_posts.jsp?<%=request.getQueryString()%>&req=<%=req%>",
       data : {},
       dataType: "json",
       success : function(data) {
       	var posts = $("<section class='white-box'></section>").appendTo($("#posts-box"));
       	var nav = $("<section id='page-nav' class='margin-top-32'></section>").appendTo($("#posts-box"));
-      	$.each(data[0],function(key,value) {
+      	$.each(data,function(key,value) {
+      	  if (key === 'nav') return true;
       	  var article = $('<article class="posts"></article>').appendTo(posts);
       	  var title = $('<h2 class="title"></h2>').appendTo(article);
       	  title.append('<a href="post/' + value.authorName + '?p_id=' + value.pid + '">' + value.title + '</a>')

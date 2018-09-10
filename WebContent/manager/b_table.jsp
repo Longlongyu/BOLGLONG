@@ -33,7 +33,7 @@
 </div>
 <script>
   $('#post-table').bootstrapTable({
-    url: "/manager/f_posts.jsp",
+    url: "/manager/f_posts.jsp?req=table",
     striped: true,
     search: true,
     pagination: true, // 在表格底部显示分页组件，默认false
@@ -47,7 +47,13 @@
     idField: 'pid',
     uniqueId: 'pid',
     responseHandler: function(res) {
-    	return res[0];
+      var arr = [];
+      var i = 0;
+      $.each(res,function(key,value) {
+      	if (key === 'nav') return true;
+      	arr[i++] = res[key];
+      })
+      return arr;
     },
     queryParams: function (params) {
       return {
